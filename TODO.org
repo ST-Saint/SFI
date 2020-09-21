@@ -1,0 +1,34 @@
+#+TITLE: Todo
+
+* 9.21
+
+** DONE USB Serial Debug
+CLOSED: [2020-09-21 Mon 21:55]
+*** [1/1] issue
+**** DONE ttyACM 无法输入
+CLOSED: [2020-09-21 Mon 21:56]
+
+[[https://discuss.96boards.org/t/how-to-connect-to-console-in-hikey970-in-android/5484/10][XR21V1410 USB-UART]]
+
+#+BEGIN_QUOTE
+Hikey970 uses XR21B14 chip for the USB-C debug serial port. The driver for this chip is not available in upstream linux kernel but since it supports part of USB CDC class, it does appear as ttyACM0 port. But this chip uses custom flow control modes which can’t be supported by usb cdc driver and flow control is needed for input. That’s why you can’t type anything onto the default ttyACM0 console but you can see the output.
+
+Coming to your question on some people got it working fully, that is mainly due to the packaging of specific driver for this chip in the distro version. For instance, Ubuntu 18.04 has this driver enabled, so users who have this specific distro will be able to use it without any issues. They will have the console as ttyXRUSB0 instead of ttyACM0.
+
+So if you need to use this port, please build the driver(just google xr21b14 driver, you’ll find it) and load onto your PC.
+#+END_QUOTE
+
+
+[[https://www.maxlinear.com/support/design-tools/software-drivers][XR21V1410 Driver]]
+
+#+BEGIN_SRC bash
+sudo rmmod cdc_acm
+sudo insmod xr_sub_serial_common.ko
+#+END_SRC
+
+重新插拔 Type-C USB, hikey970 被识别为 ~ttyXRUSB~
+
+*** 串口调试
+
+- minicom 115200 8N1
+- *hardware / software flow control: No*
