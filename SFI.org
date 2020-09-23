@@ -1,0 +1,279 @@
+#+TITLE: SFI
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+* 9.21
+
+** DONE USB Serial Debug
+CLOSED: [2020-09-21 Mon 21:55]
+*** [1/1] issue
+**** DONE ttyACM 无法输入
+CLOSED: [2020-09-21 Mon 21:56]
+
+[[https://discuss.96boards.org/t/how-to-connect-to-console-in-hikey970-in-android/5484/10][XR21V1410 USB-UART]]
+
+#+BEGIN_QUOTE
+Hikey970 uses XR21B14 chip for the USB-C debug serial port. The driver for this chip is not available in upstream linux kernel but since it supports part of USB CDC class, it does appear as ttyACM0 port. But this chip uses custom flow control modes which can’t be supported by usb cdc driver and flow control is needed for input. That’s why you can’t type anything onto the default ttyACM0 console but you can see the output.
+
+Coming to your question on some people got it working fully, that is mainly due to the packaging of specific driver for this chip in the distro version. For instance, Ubuntu 18.04 has this driver enabled, so users who have this specific distro will be able to use it without any issues. They will have the console as ttyXRUSB0 instead of ttyACM0.
+
+So if you need to use this port, please build the driver(just google xr21b14 driver, you’ll find it) and load onto your PC.
+#+END_QUOTE
+
+
+[[https://www.maxlinear.com/support/design-tools/software-drivers][XR21V1410 Driver]]
+
+#+BEGIN_SRC bash
+sudo rmmod cdc_acm
+sudo insmod xr_sub_serial_common.ko
+#+END_SRC
+
+重新插拔 Type-C USB, hikey970 被识别为 ~ttyXRUSB~
+
+*** 串口调试
+
+- minicom 115200 8N1
+- *hardware / software flow control: No*
+
+* 9.23
+
+** register hw\_breakpoint linux sample
+
+*** control flow
+- ~linux-5.8/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*~
+
+#+BEGIN_SRC c
+/**
+ * register_wide_hw_breakpoint - register a wide breakpoint in the kernel
+ * @attr: breakpoint attributes
+ * @triggered: callback to trigger when we hit the breakpoint
+ *
+ * @return a set of per_cpu pointers to perf events
+ */
+
+struct perf_event * __percpu *
+register_wide_hw_breakpoint(struct perf_event_attr *attr,
+			    perf_overflow_handler_t triggered,
+			    void *context);
+
+...571
+		bp = perf_event_create_kernel_counter(attr, cpu, NULL,
+						      triggered, context);
+#+END_SRC
+
+- ~linux-5.8/kernel/events/core.c *perf_event_create_kernel_counter*~
+
+ #+BEGIN_SRC  c
+ /**
+ ,* perf_event_create_kernel_counter
+ ,*
+ ,* @attr: attributes of the counter to create
+ ,* @cpu: cpu in which the counter is bound
+ ,* @task: task to profile (NULL for percpu)
+ ,*/
+struct perf_event *
+perf_event_create_kernel_counter(struct perf_event_attr *attr, int cpu,
+				 struct task_struct *task,
+				 perf_overflow_handler_t overflow_handler,
+				 void *context);
+...11952
+    event = perf_event_alloc(attr, cpu, task, NULL, NULL,
+                 overflow_handler, context, -1);
+ #+END_SRC
+
+ - ~linux-5.8/kernel/events/core.c *perf_event_alloc*~
+  
+ #+BEGIN_SRC c
+ /*
+ ,* Allocate and initialize an event structure
+ ,*/
+static struct perf_event *
+perf_event_alloc(struct perf_event_attr *attr, int cpu,
+                 struct task_struct *task,
+                 struct perf_event *group_leader,
+                 struct perf_event *parent_event,
+                 perf_overflow_handler_t overflow_handler,
+                 void *context, int cgroup_fd)
+
+...11035
+	event->cpu		= cpu;
+	event->attr		= *attr;
+	event->group_leader	= group_leader;
+	event->pmu		= NULL;
+	event->oncpu		= -1;
+
+	event->parent		= parent_event;
+
+	event->ns		= get_pid_ns(task_active_pid_ns(current));
+	event->id		= atomic64_inc_return(&perf_event_id);
+
+...11110
+	pmu = perf_init_event(event);
+ #+END_SRC
+- ~*perf_init_event*~
+
+
+#+BEGIN_SRC c
+
+static struct pmu *perf_init_event(struct perf_event *event)
+		ret = perf_try_init_event(pmu, event);
+#+END_SRC
+
+call ~*pmu.event_init(event)*~
+
+...
+
+- ~linux-5.8/kernel/events/hw_breakpoint.c~
+ 
+#+BEGIN_SRC c
+static struct pmu perf_breakpoint = {
+	.task_ctx_nr	= perf_sw_context, /* could eventually get its own */
+
+	.event_init	= hw_breakpoint_event_init,
+	.add		    = hw_breakpoint_add,
+	.del	    	= hw_breakpoint_del,
+	.start		= hw_breakpoint_start,
+	.stop		= hw_breakpoint_stop,
+	.read		= hw_breakpoint_pmu_read,
+};
+
+#+END_SRC
+
+- ~*hw_breakpoint_event_init*~
+
+#+BEGIN_SRC c
+static int hw_breakpoint_event_init(struct perf_event *bp)
+{
+	int err;
+
+	if (bp->attr.type != PERF_TYPE_BREAKPOINT)
+		return -ENOENT;
+
+	/*
+	 * no branch sampling for breakpoint events
+	 */
+	if (has_branch_stack(bp))
+		return -EOPNOTSUPP;
+
+	err = register_perf_hw_breakpoint(bp);
+	if (err)
+		return err;
+
+	bp->destroy = bp_perf_event_destroy;
+
+	return 0;
+}
+#+END_SRC
+
+- ~*register_perf_hw_breakpoint*~
+
+#+BEGIN_SRC c
+int register_perf_hw_breakpoint(struct perf_event *bp)
+{
+	struct arch_hw_breakpoint hw = { };
+	int err;
+
+	err = reserve_bp_slot(bp);
+	if (err)
+		return err;
+
+	err = hw_breakpoint_parse(bp, &bp->attr, &hw);
+	if (err) {
+		release_bp_slot(bp);
+		return err;
+	}
+
+	bp->hw.info = hw;
+
+	return 0;
+}
+#+END_SRC
+
+reserve / release 加锁
+
+- ~*hw_breakpoint_parse*~
+#+BEGIN_SRC c
+static int hw_breakpoint_parse(struct perf_event *bp,
+			       const struct perf_event_attr *attr,
+			       struct arch_hw_breakpoint *hw)
+{
+	int err;
+
+	err = hw_breakpoint_arch_parse(bp, attr, hw);
+	if (err)
+		return err;
+
+	if (arch_check_bp_in_kernelspace(hw)) {
+		if (attr->exclude_kernel)
+			return -EINVAL;
+		/*
+		 * Don't let unprivileged users set a breakpoint in the trap
+		 * path to avoid trap recursion attacks.
+		 */
+		if (!capable(CAP_SYS_ADMIN))
+			return -EPERM;
+	}
+
+	return 0;
+}
+#+END_SRC
+
+- ~*hw_breakpoint_arch_parse*~
+
+ #+BEGIN_SRC c
+/*
+ ,* Validate the arch-specific HW Breakpoint register settings.
+ ,*/
+int hw_breakpoint_arch_parse(struct perf_event *bp,
+			     const struct perf_event_attr *attr,
+			     struct arch_hw_breakpoint *hw)
+{
+	int ret;
+	u64 alignment_mask, offset;
+
+	/* Build the arch_hw_breakpoint. */
+	ret = arch_build_bp_info(bp, attr, hw);
+...
+}
+ #+END_SRC
+
+ - ~*hw_breakpoint_add*~
+
+#+BEGIN_SRC c
+static int hw_breakpoint_add(struct perf_event *bp, int flags)
+{
+	if (!(flags & PERF_EF_START))
+		bp->hw.state = PERF_HES_STOPPED;
+
+	if (is_sampling_event(bp)) {
+		bp->hw.last_period = bp->hw.sample_period;
+		perf_swevent_set_period(bp);
+	}
+
+	return arch_install_hw_breakpoint(bp);
+}
+#+END_SRC
+
+- ~*arch_install_hw_breakpoint*~
+
+ #+BEGIN_SRC c
+/*
+ * Install a perf counter breakpoint.
+ */
+int arch_install_hw_breakpoint(struct perf_event *bp)
+{
+	return hw_breakpoint_control(bp, HW_BREAKPOINT_INSTALL);
+}
+
+ #+END_SRC
+
+- [ ] ~*hw_breakpoint_control*~
+
+**** TODO 添加定位
+SCHEDULED: <2020-09-24 Thu 23:30-24:30>
+
+
+ 
+*** TODO [0/2] 修改 breakpoint 注册流程
+
+**** TODO 修改寄存器
+**** TODO 添加 slot
