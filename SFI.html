@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-24 Thu 01:24 -->
+<!-- 2020-10-01 Thu 12:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SFI</title>
@@ -233,45 +232,84 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9abd926">1. 9.21</a>
+<li><a href="#org1e33854">1. commands</a>
 <ul>
-<li><a href="#org802a3c0">1.1. <span class="done DONE">DONE</span> USB Serial Debug</a>
+<li><a href="#org053e3fa">1.1. network</a></li>
+</ul>
+</li>
+<li><a href="#org4739b72">2. 9.21</a>
 <ul>
-<li><a href="#org70ba176">1.1.1. <code>[1/1]</code> issue</a></li>
-<li><a href="#org17d2b3a">1.1.2. 串口调试</a></li>
+<li><a href="#org6a83869">2.1. <span class="done DONE">DONE</span> USB Serial Debug</a>
+<ul>
+<li><a href="#orgee8d1b9">2.1.1. <code>[1/1]</code> issue</a></li>
+<li><a href="#org5793437">2.1.2. 串口调试</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org75e4343">2. 9.23</a>
+<li><a href="#orgaf6bf86">3. 9.23</a>
 <ul>
-<li><a href="#org93d4026">2.1. register hw\<sub>breakpoint</sub> linux sample</a>
+<li><a href="#orgbd34930">3.1. register hw\<sub>breakpoint</sub> linux sample</a>
 <ul>
-<li><a href="#org327c53d">2.1.1. control flow</a></li>
-<li><a href="#orgace50a1">2.1.2. <span class="todo TODO">TODO</span> <code>[0/2]</code> 修改 breakpoint 注册流程</a></li>
+<li><a href="#orga91d9e3">3.1.1. control flow</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#orgaeb72ba">4. UNDO</a>
+<ul>
+<li><a href="#org1fc7c6b">4.1. system call</a></li>
+<li><a href="#org2bd48a2">4.2. <span class="todo ___">[ ]</span> 修改 BCR, BVR 寄存器</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9abd926" class="outline-2">
-<h2 id="org9abd926"><span class="section-number-2">1</span> 9.21</h2>
+<div id="outline-container-org1e33854" class="outline-2">
+<h2 id="org1e33854"><span class="section-number-2">1</span> commands</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org802a3c0" class="outline-3">
-<h3 id="org802a3c0"><span class="section-number-3">1.1</span> <span class="done DONE">DONE</span> USB Serial Debug</h3>
+<div id="outline-container-org053e3fa" class="outline-3">
+<h3 id="org053e3fa"><span class="section-number-3">1.1</span> network</h3>
 <div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><p>
+connect wifi from terminal
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">  <span style="color: #ECBE7B;">sudo</span> nmcli dev wifi connect <span style="color: #98be65;">'SSID'</span>
+</pre>
+</div></li>
+
+<li><p>
+control
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"> <span style="color: #ECBE7B;">sudo</span> nmcli
+</pre>
+</div></li>
+</ul>
 </div>
-<div id="outline-container-org70ba176" class="outline-4">
-<h4 id="org70ba176"><span class="section-number-4">1.1.1</span> <code>[1/1]</code> issue</h4>
-<div class="outline-text-4" id="text-1-1-1">
+</div>
+</div>
+
+<div id="outline-container-org4739b72" class="outline-2">
+<h2 id="org4739b72"><span class="section-number-2">2</span> 9.21</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org6a83869" class="outline-3">
+<h3 id="org6a83869"><span class="section-number-3">2.1</span> <span class="done DONE">DONE</span> USB Serial Debug</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-orgee8d1b9" class="outline-4">
+<h4 id="orgee8d1b9"><span class="section-number-4">2.1.1</span> <code>[1/1]</code> issue</h4>
+<div class="outline-text-4" id="text-2-1-1">
 </div>
 <ol class="org-ol">
-<li><a id="org2125fa8"></a><span class="done DONE">DONE</span> ttyACM 无法输入<br />
-<div class="outline-text-5" id="text-1-1-1-1">
+<li><a id="orgdd652b2"></a><span class="done DONE">DONE</span> ttyACM 无法输入<br />
+<div class="outline-text-5" id="text-2-1-1-1">
 <p>
 <a href="https://discuss.96boards.org/t/how-to-connect-to-console-in-hikey970-in-android/5484/10">XR21V1410 USB-UART</a>
 </p>
@@ -309,9 +347,9 @@ So if you need to use this port, please build the driver(just google xr21b14 dri
 </ol>
 </div>
 
-<div id="outline-container-org17d2b3a" class="outline-4">
-<h4 id="org17d2b3a"><span class="section-number-4">1.1.2</span> 串口调试</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-org5793437" class="outline-4">
+<h4 id="org5793437"><span class="section-number-4">2.1.2</span> 串口调试</h4>
+<div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>minicom 115200 8N1</li>
 <li><b>hardware / software flow control: No</b></li>
@@ -321,17 +359,17 @@ So if you need to use this port, please build the driver(just google xr21b14 dri
 </div>
 </div>
 
-<div id="outline-container-org75e4343" class="outline-2">
-<h2 id="org75e4343"><span class="section-number-2">2</span> 9.23</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgaf6bf86" class="outline-2">
+<h2 id="orgaf6bf86"><span class="section-number-2">3</span> 9.23</h2>
+<div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org93d4026" class="outline-3">
-<h3 id="org93d4026"><span class="section-number-3">2.1</span> register hw\<sub>breakpoint</sub> linux sample</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgbd34930" class="outline-3">
+<h3 id="orgbd34930"><span class="section-number-3">3.1</span> register hw\<sub>breakpoint</sub> linux sample</h3>
+<div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org327c53d" class="outline-4">
-<h4 id="org327c53d"><span class="section-number-4">2.1.1</span> control flow</h4>
-<div class="outline-text-4" id="text-2-1-1">
+<div id="outline-container-orga91d9e3" class="outline-4">
+<h4 id="orga91d9e3"><span class="section-number-4">3.1.1</span> control flow</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li><code>linux-5.8/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*</code></li>
 </ul>
@@ -378,11 +416,11 @@ register_wide_hw_breakpoint<span style="color: #51afef;">(</span><span style="co
     event = perf_event_alloc<span style="color: #51afef;">(</span>attr, cpu, task, <span style="color: #a9a1e1;">NULL</span>, <span style="color: #a9a1e1;">NULL</span>,
                  overflow_handler, context, -<span style="color: #da8548; font-weight: bold;">1</span><span style="color: #51afef;">)</span>;
 </pre>
-</div>
+</div></li>
 
-<ul class="org-ul">
-<li><code>linux-5.8/kernel/events/core.c *perf_event_alloc*</code></li>
-</ul>
+<li><p>
+<code>linux-5.8/kernel/events/core.c *perf_event_alloc*</code>
+</p>
 
 <div class="org-src-container">
 <pre class="src src-c"> <span style="color: #5B6268;">/*</span>
@@ -586,7 +624,7 @@ reserve / release 加锁
 
 <ul class="org-ul">
 <li><p>
-<code>*arch_install_hw_breakpoint*</code>
+<code>linux-5.8/arch/arm64/kernel/hw_breakpoint.c *arch_install_hw_breakpoint*</code>
 </p>
 
 <div class="org-src-container">
@@ -601,35 +639,63 @@ reserve / release 加锁
 </pre>
 </div></li>
 
-<li class="off"><code>[&#xa0;]</code> <code>*hw_breakpoint_control*</code></li>
+<li class="off"><code>[&#xa0;]</code> <code>linux-5.8/arch/arm64/kernel/hw_breakpoint.c *hw_breakpoint_control*</code></li>
 </ul>
 </div>
-
-<ol class="org-ol">
-<li><a id="org72bfa5e"></a><span class="todo TODO">TODO</span> 添加定位<br />
-<div class="outline-text-5" id="text-2-1-1-1">
 </div>
-</li>
-</ol>
+</div>
 </div>
 
 
-
-<div id="outline-container-orgace50a1" class="outline-4">
-<h4 id="orgace50a1"><span class="section-number-4">2.1.2</span> <span class="todo TODO">TODO</span> <code>[0/2]</code> 修改 breakpoint 注册流程</h4>
-<div class="outline-text-4" id="text-2-1-2">
+<div id="outline-container-orgaeb72ba" class="outline-2">
+<h2 id="orgaeb72ba"><span class="section-number-2">4</span> UNDO</h2>
+<div class="outline-text-2" id="text-4">
 </div>
-<ol class="org-ol">
-<li><a id="org79dc7bf"></a><span class="todo TODO">TODO</span> 修改寄存器<br /></li>
-<li><a id="orgb632798"></a><span class="todo TODO">TODO</span> 添加 slot<br /></li>
-</ol>
+<div id="outline-container-org1fc7c6b" class="outline-3">
+<h3 id="org1fc7c6b"><span class="section-number-3">4.1</span> system call</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<a href="https://www.kernel.org/doc/html/latest/process/adding-syscalls.html">system call linux kernel docs</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org2bd48a2" class="outline-3">
+<h3 id="org2bd48a2"><span class="section-number-3">4.2</span> <span class="todo ___">[ ]</span> 修改 BCR, BVR 寄存器</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+case HW<sub>BREAKPOINT</sub><sub>RESTORE</sub>:
+    <i>* Setup the address register. *</i>
+    write<sub>wb</sub><sub>reg</sub>(val<sub>reg</sub>, i, info-&gt;address);
+</p>
+
+<p>
+<i>* Setup the control register. *</i>
+ctrl = encode<sub>ctrl</sub><sub>reg</sub>(info-&gt;ctrl);
+write<sub>wb</sub><sub>reg</sub>(ctrl<sub>reg</sub>, i,
+         reg<sub>enable</sub> ? ctrl | 0x1 : ctrl &amp; ~0x1);
+break;
+</p>
+
+<p>
+[[<a href="file:///home/saint/Bionic-Builder/Kernel-SRC/linux-5.8/arch/arm64/kernel/hw_breakpoint.c#MissingReference">file:///home/saint/Bionic-Builder/Kernel-SRC/linux-5.8/arch/arm64/kernel/hw_breakpoint.c#MissingReference</a> HW<sub>BREAKPOINT</sub><sub>RESTORE</sub>:
+ <i>* Setup the address register. *</i>
+ write<sub>wb</sub><sub>reg</sub>(val<sub>reg</sub>, i, info-&gt;address);
+</p>
+
+<p>
+<i>* Setup the control register. *</i>
+ctrl = encode<sub>ctrl</sub><sub>reg</sub>(info-&gt;ctrl);
+write<sub>wb</sub><sub>reg</sub>(ctrl<sub>reg</sub>, i,
+reg<sub>enable</sub> ? ctrl | 0x1 : ctrl &amp; ~0x1);
+break;]]
+</p>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: ST-Saint</p>
-<p class="date">Created: 2020-09-24 Thu 01:24</p>
+<p class="date">Created: 2020-10-01 Thu 12:16</p>
 </div>
 </body>
 </html>
