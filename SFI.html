@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-01 Thu 12:16 -->
+<!-- 2020-10-01 Thu 09:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SFI</title>
@@ -232,46 +231,46 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1e33854">1. commands</a>
+<li><a href="#org989f21f">1. commands</a>
 <ul>
-<li><a href="#org053e3fa">1.1. network</a></li>
+<li><a href="#org664ae48">1.1. network</a></li>
 </ul>
 </li>
-<li><a href="#org4739b72">2. 9.21</a>
+<li><a href="#org9efedd3">2. 9.21</a>
 <ul>
-<li><a href="#org6a83869">2.1. <span class="done DONE">DONE</span> USB Serial Debug</a>
+<li><a href="#orgc0882ae">2.1. <span class="done DONE">DONE</span> USB Serial Debug</a>
 <ul>
-<li><a href="#orgee8d1b9">2.1.1. <code>[1/1]</code> issue</a></li>
-<li><a href="#org5793437">2.1.2. 串口调试</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgaf6bf86">3. 9.23</a>
-<ul>
-<li><a href="#orgbd34930">3.1. register hw\<sub>breakpoint</sub> linux sample</a>
-<ul>
-<li><a href="#orga91d9e3">3.1.1. control flow</a></li>
+<li><a href="#orgeec6a5e">2.1.1. <code>[1/1]</code> issue</a></li>
+<li><a href="#orgd6f9372">2.1.2. 串口调试</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgaeb72ba">4. UNDO</a>
+<li><a href="#orgd825516">3. 9.23</a>
 <ul>
-<li><a href="#org1fc7c6b">4.1. system call</a></li>
-<li><a href="#org2bd48a2">4.2. <span class="todo ___">[ ]</span> 修改 BCR, BVR 寄存器</a></li>
+<li><a href="#org2cb58a8">3.1. register hw\<sub>breakpoint</sub> linux sample</a>
+<ul>
+<li><a href="#orgef68fed">3.1.1. control flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgfad8723">4. UNDO</a>
+<ul>
+<li><a href="#orgeddcc05">4.1. system call</a></li>
+<li><a href="#orgb2d9637">4.2. <span class="todo ___">[ ]</span> 修改 BCR, BVR 寄存器</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1e33854" class="outline-2">
-<h2 id="org1e33854"><span class="section-number-2">1</span> commands</h2>
+<div id="outline-container-org989f21f" class="outline-2">
+<h2 id="org989f21f"><span class="section-number-2">1</span> commands</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org053e3fa" class="outline-3">
-<h3 id="org053e3fa"><span class="section-number-3">1.1</span> network</h3>
+<div id="outline-container-org664ae48" class="outline-3">
+<h3 id="org664ae48"><span class="section-number-3">1.1</span> network</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><p>
@@ -279,7 +278,7 @@ connect wifi from terminal
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash">  <span style="color: #ECBE7B;">sudo</span> nmcli dev wifi connect <span style="color: #98be65;">'SSID'</span>
+<pre class="src src-bash">  <span style="color: #ECBE7B;">sudo</span> nmcli dev wifi connect <span style="color: #99bb66;">'SSID'</span>
 </pre>
 </div></li>
 
@@ -295,20 +294,20 @@ control
 </div>
 </div>
 
-<div id="outline-container-org4739b72" class="outline-2">
-<h2 id="org4739b72"><span class="section-number-2">2</span> 9.21</h2>
+<div id="outline-container-org9efedd3" class="outline-2">
+<h2 id="org9efedd3"><span class="section-number-2">2</span> 9.21</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org6a83869" class="outline-3">
-<h3 id="org6a83869"><span class="section-number-3">2.1</span> <span class="done DONE">DONE</span> USB Serial Debug</h3>
+<div id="outline-container-orgc0882ae" class="outline-3">
+<h3 id="orgc0882ae"><span class="section-number-3">2.1</span> <span class="done DONE">DONE</span> USB Serial Debug</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orgee8d1b9" class="outline-4">
-<h4 id="orgee8d1b9"><span class="section-number-4">2.1.1</span> <code>[1/1]</code> issue</h4>
+<div id="outline-container-orgeec6a5e" class="outline-4">
+<h4 id="orgeec6a5e"><span class="section-number-4">2.1.1</span> <code>[1/1]</code> issue</h4>
 <div class="outline-text-4" id="text-2-1-1">
 </div>
 <ol class="org-ol">
-<li><a id="orgdd652b2"></a><span class="done DONE">DONE</span> ttyACM 无法输入<br />
+<li><a id="org58f169c"></a><span class="done DONE">DONE</span> ttyACM 无法输入<br />
 <div class="outline-text-5" id="text-2-1-1-1">
 <p>
 <a href="https://discuss.96boards.org/t/how-to-connect-to-console-in-hikey970-in-android/5484/10">XR21V1410 USB-UART</a>
@@ -347,8 +346,8 @@ So if you need to use this port, please build the driver(just google xr21b14 dri
 </ol>
 </div>
 
-<div id="outline-container-org5793437" class="outline-4">
-<h4 id="org5793437"><span class="section-number-4">2.1.2</span> 串口调试</h4>
+<div id="outline-container-orgd6f9372" class="outline-4">
+<h4 id="orgd6f9372"><span class="section-number-4">2.1.2</span> 串口调试</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>minicom 115200 8N1</li>
@@ -359,36 +358,36 @@ So if you need to use this port, please build the driver(just google xr21b14 dri
 </div>
 </div>
 
-<div id="outline-container-orgaf6bf86" class="outline-2">
-<h2 id="orgaf6bf86"><span class="section-number-2">3</span> 9.23</h2>
+<div id="outline-container-orgd825516" class="outline-2">
+<h2 id="orgd825516"><span class="section-number-2">3</span> 9.23</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgbd34930" class="outline-3">
-<h3 id="orgbd34930"><span class="section-number-3">3.1</span> register hw\<sub>breakpoint</sub> linux sample</h3>
+<div id="outline-container-org2cb58a8" class="outline-3">
+<h3 id="org2cb58a8"><span class="section-number-3">3.1</span> register hw\<sub>breakpoint</sub> linux sample</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-orga91d9e3" class="outline-4">
-<h4 id="orga91d9e3"><span class="section-number-4">3.1.1</span> control flow</h4>
+<div id="outline-container-orgef68fed" class="outline-4">
+<h4 id="orgef68fed"><span class="section-number-4">3.1.1</span> control flow</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li><code>linux-5.8/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*</code></li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-c"><span style="color: #83898d;">/**</span>
-<span style="color: #83898d;"> * register_wide_hw_breakpoint - register a wide breakpoint in the kernel</span>
-<span style="color: #83898d;"> * </span><span style="color: #a9a1e1;">@attr</span><span style="color: #83898d;">: breakpoint attributes</span>
-<span style="color: #83898d;"> * </span><span style="color: #a9a1e1;">@triggered</span><span style="color: #83898d;">: callback to trigger when we hit the breakpoint</span>
-<span style="color: #83898d;"> *</span>
-<span style="color: #83898d;"> * </span><span style="color: #a9a1e1;">@return</span><span style="color: #83898d;"> a set of per_cpu pointers to perf events</span>
-<span style="color: #83898d;"> */</span>
+<pre class="src src-c"><span style="color: #7d7d7d;">/**</span>
+<span style="color: #7d7d7d;"> * register_wide_hw_breakpoint - register a wide breakpoint in the kernel</span>
+<span style="color: #7d7d7d;"> * </span><span style="color: #a9a1e1;">@attr</span><span style="color: #7d7d7d;">: breakpoint attributes</span>
+<span style="color: #7d7d7d;"> * </span><span style="color: #a9a1e1;">@triggered</span><span style="color: #7d7d7d;">: callback to trigger when we hit the breakpoint</span>
+<span style="color: #7d7d7d;"> *</span>
+<span style="color: #7d7d7d;"> * </span><span style="color: #a9a1e1;">@return</span><span style="color: #7d7d7d;"> a set of per_cpu pointers to perf events</span>
+<span style="color: #7d7d7d;"> */</span>
 
 <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event</span> * <span style="color: #c678dd;">__percpu</span> *
 register_wide_hw_breakpoint<span style="color: #51afef;">(</span><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event_attr</span> *<span style="color: #dcaeea;">attr</span>,
                 <span style="color: #ECBE7B;">perf_overflow_handler_t</span> <span style="color: #dcaeea;">triggered</span>,
                 <span style="color: #ECBE7B;">void</span> *<span style="color: #dcaeea;">context</span><span style="color: #51afef;">)</span>;
 
-...<span style="color: #da8548; font-weight: bold;">571</span>
+...<span style="color: #dd8844; font-weight: bold;">571</span>
         bp = perf_event_create_kernel_counter<span style="color: #51afef;">(</span>attr, cpu, <span style="color: #a9a1e1;">NULL</span>,
                               triggered, context<span style="color: #51afef;">)</span>;
 </pre>
@@ -400,21 +399,21 @@ register_wide_hw_breakpoint<span style="color: #51afef;">(</span><span style="co
 </p>
 
 <div class="org-src-container">
-<pre class="src src-c"> <span style="color: #83898d;">/**</span>
-<span style="color: #83898d;"> * perf_event_create_kernel_counter</span>
-<span style="color: #83898d;"> *</span>
-<span style="color: #83898d;"> * </span><span style="color: #a9a1e1;">@attr</span><span style="color: #83898d;">: attributes of the counter to create</span>
-<span style="color: #83898d;"> * </span><span style="color: #a9a1e1;">@cpu</span><span style="color: #83898d;">: cpu in which the counter is bound</span>
-<span style="color: #83898d;"> * </span><span style="color: #a9a1e1;">@task</span><span style="color: #83898d;">: task to profile (NULL for percpu)</span>
-<span style="color: #83898d;"> */</span>
+<pre class="src src-c"> <span style="color: #7d7d7d;">/**</span>
+<span style="color: #7d7d7d;"> * perf_event_create_kernel_counter</span>
+<span style="color: #7d7d7d;"> *</span>
+<span style="color: #7d7d7d;"> * </span><span style="color: #a9a1e1;">@attr</span><span style="color: #7d7d7d;">: attributes of the counter to create</span>
+<span style="color: #7d7d7d;"> * </span><span style="color: #a9a1e1;">@cpu</span><span style="color: #7d7d7d;">: cpu in which the counter is bound</span>
+<span style="color: #7d7d7d;"> * </span><span style="color: #a9a1e1;">@task</span><span style="color: #7d7d7d;">: task to profile (NULL for percpu)</span>
+<span style="color: #7d7d7d;"> */</span>
 <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event</span> *
 <span style="color: #c678dd;">perf_event_create_kernel_counter</span><span style="color: #51afef;">(</span><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event_attr</span> *<span style="color: #dcaeea;">attr</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">cpu</span>,
                  <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">task_struct</span> *<span style="color: #dcaeea;">task</span>,
                  <span style="color: #ECBE7B;">perf_overflow_handler_t</span> <span style="color: #dcaeea;">overflow_handler</span>,
                  <span style="color: #ECBE7B;">void</span> *<span style="color: #dcaeea;">context</span><span style="color: #51afef;">)</span>;
-...<span style="color: #da8548; font-weight: bold;">11952</span>
+...<span style="color: #dd8844; font-weight: bold;">11952</span>
     event = perf_event_alloc<span style="color: #51afef;">(</span>attr, cpu, task, <span style="color: #a9a1e1;">NULL</span>, <span style="color: #a9a1e1;">NULL</span>,
-                 overflow_handler, context, -<span style="color: #da8548; font-weight: bold;">1</span><span style="color: #51afef;">)</span>;
+                 overflow_handler, context, -<span style="color: #dd8844; font-weight: bold;">1</span><span style="color: #51afef;">)</span>;
 </pre>
 </div></li>
 
@@ -423,9 +422,9 @@ register_wide_hw_breakpoint<span style="color: #51afef;">(</span><span style="co
 </p>
 
 <div class="org-src-container">
-<pre class="src src-c"> <span style="color: #5B6268;">/*</span>
-<span style="color: #5B6268;"> * Allocate and initialize an event structure</span>
-<span style="color: #5B6268;"> </span><span style="color: #5B6268;">*/</span>
+<pre class="src src-c"> <span style="color: #525252;">/*</span>
+<span style="color: #525252;"> * Allocate and initialize an event structure</span>
+<span style="color: #525252;"> */</span>
 <span style="color: #51afef;">static</span> <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event</span> *
 <span style="color: #c678dd;">perf_event_alloc</span><span style="color: #51afef;">(</span><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event_attr</span> *<span style="color: #dcaeea;">attr</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">cpu</span>,
                  <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">task_struct</span> *<span style="color: #dcaeea;">task</span>,
@@ -434,19 +433,19 @@ register_wide_hw_breakpoint<span style="color: #51afef;">(</span><span style="co
                  <span style="color: #ECBE7B;">perf_overflow_handler_t</span> <span style="color: #dcaeea;">overflow_handler</span>,
                  <span style="color: #ECBE7B;">void</span> *<span style="color: #dcaeea;">context</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">cgroup_fd</span><span style="color: #51afef;">)</span>
 
-...<span style="color: #da8548; font-weight: bold;">11035</span>
+...<span style="color: #dd8844; font-weight: bold;">11035</span>
     event-&gt;cpu      = cpu;
     event-&gt;attr     = *attr;
     event-&gt;group_leader = group_leader;
     event-&gt;pmu      = <span style="color: #a9a1e1;">NULL</span>;
-    event-&gt;oncpu        = -<span style="color: #da8548; font-weight: bold;">1</span>;
+    event-&gt;oncpu        = -<span style="color: #dd8844; font-weight: bold;">1</span>;
 
     event-&gt;parent       = parent_event;
 
     event-&gt;ns       = get_pid_ns<span style="color: #51afef;">(</span>task_active_pid_ns<span style="color: #c678dd;">(</span>current<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>;
     event-&gt;id       = atomic64_inc_return<span style="color: #51afef;">(</span>&amp;perf_event_id<span style="color: #51afef;">)</span>;
 
-...<span style="color: #da8548; font-weight: bold;">11110</span>
+...<span style="color: #dd8844; font-weight: bold;">11110</span>
     pmu = perf_init_event<span style="color: #51afef;">(</span>event<span style="color: #51afef;">)</span>;
 </pre>
 </div></li>
@@ -475,7 +474,7 @@ call <code>*pmu.event_init(event)*</code>
 
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #51afef;">static</span> <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">pmu</span> <span style="color: #dcaeea;">perf_breakpoint</span> = <span style="color: #51afef;">{</span>
-    .task_ctx_nr    = perf_sw_context, <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">could eventually get its own </span><span style="color: #5B6268;">*/</span>
+    .task_ctx_nr    = perf_sw_context, <span style="color: #525252;">/* </span><span style="color: #525252;">could eventually get its own</span><span style="color: #525252;"> */</span>
 
     .event_init = hw_breakpoint_event_init,
     .add            = hw_breakpoint_add,
@@ -500,10 +499,10 @@ call <code>*pmu.event_init(event)*</code>
     <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>bp-&gt;attr.type != <span style="color: #a9a1e1;">PERF_TYPE_BREAKPOINT</span><span style="color: #c678dd;">)</span>
         <span style="color: #51afef;">return</span> -<span style="color: #a9a1e1;">ENOENT</span>;
 
-    <span style="color: #5B6268;">/*</span>
-<span style="color: #5B6268;">     * no branch sampling for breakpoint events</span>
-<span style="color: #5B6268;">     </span><span style="color: #5B6268;">*/</span>
-    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>has_branch_stack<span style="color: #98be65;">(</span>bp<span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span>
+    <span style="color: #525252;">/*</span>
+<span style="color: #525252;">     * no branch sampling for breakpoint events</span>
+<span style="color: #525252;">     */</span>
+    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>has_branch_stack<span style="color: #99bb66;">(</span>bp<span style="color: #99bb66;">)</span><span style="color: #c678dd;">)</span>
         <span style="color: #51afef;">return</span> -<span style="color: #a9a1e1;">EOPNOTSUPP</span>;
 
     err = register_perf_hw_breakpoint<span style="color: #c678dd;">(</span>bp<span style="color: #c678dd;">)</span>;
@@ -512,7 +511,7 @@ call <code>*pmu.event_init(event)*</code>
 
     bp-&gt;destroy = bp_perf_event_destroy;
 
-    <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+    <span style="color: #51afef;">return</span> <span style="color: #dd8844; font-weight: bold;">0</span>;
 <span style="color: #51afef;">}</span>
 </pre>
 </div>
@@ -533,13 +532,13 @@ call <code>*pmu.event_init(event)*</code>
 
     err = hw_breakpoint_parse<span style="color: #c678dd;">(</span>bp, &amp;bp-&gt;attr, &amp;hw<span style="color: #c678dd;">)</span>;
     <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>err<span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>
-        release_bp_slot<span style="color: #98be65;">(</span>bp<span style="color: #98be65;">)</span>;
+        release_bp_slot<span style="color: #99bb66;">(</span>bp<span style="color: #99bb66;">)</span>;
         <span style="color: #51afef;">return</span> err;
     <span style="color: #c678dd;">}</span>
 
     bp-&gt;hw.info = hw;
 
-    <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+    <span style="color: #51afef;">return</span> <span style="color: #dd8844; font-weight: bold;">0</span>;
 <span style="color: #51afef;">}</span>
 </pre>
 </div>
@@ -562,18 +561,18 @@ reserve / release 加锁
     <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>err<span style="color: #c678dd;">)</span>
         <span style="color: #51afef;">return</span> err;
 
-    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>arch_check_bp_in_kernelspace<span style="color: #98be65;">(</span>hw<span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>
-        <span style="color: #51afef;">if</span> <span style="color: #98be65;">(</span>attr-&gt;exclude_kernel<span style="color: #98be65;">)</span>
+    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>arch_check_bp_in_kernelspace<span style="color: #99bb66;">(</span>hw<span style="color: #99bb66;">)</span><span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>
+        <span style="color: #51afef;">if</span> <span style="color: #99bb66;">(</span>attr-&gt;exclude_kernel<span style="color: #99bb66;">)</span>
             <span style="color: #51afef;">return</span> -<span style="color: #a9a1e1;">EINVAL</span>;
-        <span style="color: #5B6268;">/*</span>
-<span style="color: #5B6268;">         * Don't let unprivileged users set a breakpoint in the trap</span>
-<span style="color: #5B6268;">         * path to avoid trap recursion attacks.</span>
-<span style="color: #5B6268;">         </span><span style="color: #5B6268;">*/</span>
-        <span style="color: #51afef;">if</span> <span style="color: #98be65;">(</span><span style="color: #51afef; font-weight: bold;">!</span>capable<span style="color: #51afef;">(</span><span style="color: #a9a1e1;">CAP_SYS_ADMIN</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span>
+        <span style="color: #525252;">/*</span>
+<span style="color: #525252;">         * Don't let unprivileged users set a breakpoint in the trap</span>
+<span style="color: #525252;">         * path to avoid trap recursion attacks.</span>
+<span style="color: #525252;">         */</span>
+        <span style="color: #51afef;">if</span> <span style="color: #99bb66;">(</span><span style="color: #51afef; font-weight: bold;">!</span>capable<span style="color: #51afef;">(</span><span style="color: #a9a1e1;">CAP_SYS_ADMIN</span><span style="color: #51afef;">)</span><span style="color: #99bb66;">)</span>
             <span style="color: #51afef;">return</span> -<span style="color: #a9a1e1;">EPERM</span>;
     <span style="color: #c678dd;">}</span>
 
-    <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+    <span style="color: #51afef;">return</span> <span style="color: #dd8844; font-weight: bold;">0</span>;
 <span style="color: #51afef;">}</span>
 </pre>
 </div>
@@ -584,9 +583,9 @@ reserve / release 加锁
 </p>
 
 <div class="org-src-container">
-<pre class="src src-c"><span style="color: #5B6268;">/*</span>
-<span style="color: #5B6268;"> * Validate the arch-specific HW Breakpoint register settings.</span>
-<span style="color: #5B6268;"> </span><span style="color: #5B6268;">*/</span>
+<pre class="src src-c"><span style="color: #525252;">/*</span>
+<span style="color: #525252;"> * Validate the arch-specific HW Breakpoint register settings.</span>
+<span style="color: #525252;"> */</span>
 <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">hw_breakpoint_arch_parse</span><span style="color: #51afef;">(</span><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event</span> *<span style="color: #dcaeea;">bp</span>,
                  <span style="color: #51afef;">const</span> <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event_attr</span> *<span style="color: #dcaeea;">attr</span>,
                  <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">arch_hw_breakpoint</span> *<span style="color: #dcaeea;">hw</span><span style="color: #51afef;">)</span>
@@ -594,7 +593,7 @@ reserve / release 加锁
     <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ret</span>;
     <span style="color: #ECBE7B;">u64</span> <span style="color: #dcaeea;">alignment_mask</span>, <span style="color: #dcaeea;">offset</span>;
 
-    <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">Build the arch_hw_breakpoint. </span><span style="color: #5B6268;">*/</span>
+    <span style="color: #525252;">/* </span><span style="color: #525252;">Build the arch_hw_breakpoint.</span><span style="color: #525252;"> */</span>
     ret = arch_build_bp_info<span style="color: #c678dd;">(</span>bp, attr, hw<span style="color: #c678dd;">)</span>;
 ...
 <span style="color: #51afef;">}</span>
@@ -609,12 +608,12 @@ reserve / release 加锁
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">hw_breakpoint_add</span><span style="color: #51afef;">(</span><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event</span> *<span style="color: #dcaeea;">bp</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">flags</span><span style="color: #51afef;">)</span>
 <span style="color: #51afef;">{</span>
-    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span><span style="color: #51afef; font-weight: bold;">!</span><span style="color: #98be65;">(</span>flags &amp; <span style="color: #a9a1e1;">PERF_EF_START</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span>
+    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span><span style="color: #51afef; font-weight: bold;">!</span><span style="color: #99bb66;">(</span>flags &amp; <span style="color: #a9a1e1;">PERF_EF_START</span><span style="color: #99bb66;">)</span><span style="color: #c678dd;">)</span>
         bp-&gt;hw.state = <span style="color: #a9a1e1;">PERF_HES_STOPPED</span>;
 
-    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>is_sampling_event<span style="color: #98be65;">(</span>bp<span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>
+    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>is_sampling_event<span style="color: #99bb66;">(</span>bp<span style="color: #99bb66;">)</span><span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>
         bp-&gt;hw.last_period = bp-&gt;hw.sample_period;
-        perf_swevent_set_period<span style="color: #98be65;">(</span>bp<span style="color: #98be65;">)</span>;
+        perf_swevent_set_period<span style="color: #99bb66;">(</span>bp<span style="color: #99bb66;">)</span>;
     <span style="color: #c678dd;">}</span>
 
     <span style="color: #51afef;">return</span> arch_install_hw_breakpoint<span style="color: #c678dd;">(</span>bp<span style="color: #c678dd;">)</span>;
@@ -628,9 +627,9 @@ reserve / release 加锁
 </p>
 
 <div class="org-src-container">
-<pre class="src src-c"><span style="color: #5B6268;">/*</span>
-<span style="color: #5B6268;"> * Install a perf counter breakpoint.</span>
-<span style="color: #5B6268;"> </span><span style="color: #5B6268;">*/</span>
+<pre class="src src-c"><span style="color: #525252;">/*</span>
+<span style="color: #525252;"> * Install a perf counter breakpoint.</span>
+<span style="color: #525252;"> */</span>
 <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">arch_install_hw_breakpoint</span><span style="color: #51afef;">(</span><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event</span> *<span style="color: #dcaeea;">bp</span><span style="color: #51afef;">)</span>
 <span style="color: #51afef;">{</span>
     <span style="color: #51afef;">return</span> hw_breakpoint_control<span style="color: #c678dd;">(</span>bp, <span style="color: #a9a1e1;">HW_BREAKPOINT_INSTALL</span><span style="color: #c678dd;">)</span>;
@@ -639,30 +638,98 @@ reserve / release 加锁
 </pre>
 </div></li>
 
-<li class="off"><code>[&#xa0;]</code> <code>linux-5.8/arch/arm64/kernel/hw_breakpoint.c *hw_breakpoint_control*</code></li>
+<li><code>linux-5.8/arch/arm64/kernel/hw_breakpoint.c *hw_breakpoint_control*</code></li>
 </ul>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">hw_breakpoint_control</span><span style="color: #51afef;">(</span><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event</span> *<span style="color: #dcaeea;">bp</span>,
+                 <span style="color: #51afef;">enum</span> <span style="color: #ECBE7B;">hw_breakpoint_ops</span> <span style="color: #dcaeea;">ops</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">{</span>
+    <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">arch_hw_breakpoint</span> *<span style="color: #dcaeea;">info</span> = counter_arch_bp<span style="color: #c678dd;">(</span>bp<span style="color: #c678dd;">)</span>;
+    <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event</span> **<span style="color: #dcaeea;">slots</span>;
+    <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">debug_info</span> *<span style="color: #dcaeea;">debug_info</span> = &amp;current-&gt;thread.debug;
+    <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">max_slots</span>, <span style="color: #dcaeea;">ctrl_reg</span>, <span style="color: #dcaeea;">val_reg</span>, <span style="color: #dcaeea;">reg_enable</span>;
+    <span style="color: #51afef;">enum</span> <span style="color: #ECBE7B;">dbg_active_el</span> <span style="color: #dcaeea;">dbg_el</span> = debug_exception_level<span style="color: #c678dd;">(</span>info-&gt;ctrl.privilege<span style="color: #c678dd;">)</span>;
+    <span style="color: #ECBE7B;">u32</span> <span style="color: #dcaeea;">ctrl</span>;
+
+    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>info-&gt;ctrl.type == <span style="color: #a9a1e1;">ARM_BREAKPOINT_EXECUTE</span><span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>
+        <span style="color: #525252;">/* </span><span style="color: #525252;">Breakpoint</span><span style="color: #525252;"> */</span>
+        ctrl_reg = AARCH64_DBG_REG_BCR;
+        val_reg = AARCH64_DBG_REG_BVR;
+        slots = this_cpu_ptr<span style="color: #99bb66;">(</span>bp_on_reg<span style="color: #99bb66;">)</span>;
+        max_slots = core_num_brps;
+        reg_enable = <span style="color: #51afef; font-weight: bold;">!</span>debug_info-&gt;bps_disabled;
+    <span style="color: #c678dd;">}</span> <span style="color: #51afef;">else</span> <span style="color: #c678dd;">{</span>
+        <span style="color: #525252;">/* </span><span style="color: #525252;">Watchpoint</span><span style="color: #525252;"> */</span>
+        ctrl_reg = AARCH64_DBG_REG_WCR;
+        val_reg = AARCH64_DBG_REG_WVR;
+        slots = this_cpu_ptr<span style="color: #99bb66;">(</span>wp_on_reg<span style="color: #99bb66;">)</span>;
+        max_slots = core_num_wrps;
+        reg_enable = <span style="color: #51afef; font-weight: bold;">!</span>debug_info-&gt;wps_disabled;
+    <span style="color: #c678dd;">}</span>
+
+    i = hw_breakpoint_slot_setup<span style="color: #c678dd;">(</span>slots, max_slots, bp, ops<span style="color: #c678dd;">)</span>;
+
+    <span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">WARN_ONCE</span><span style="color: #99bb66;">(</span>i &lt; <span style="color: #dd8844; font-weight: bold;">0</span>, <span style="color: #99bb66;">"Can't find any breakpoint slot"</span><span style="color: #99bb66;">)</span><span style="color: #c678dd;">)</span>
+        <span style="color: #51afef;">return</span> i;
+
+    <span style="color: #51afef;">switch</span> <span style="color: #c678dd;">(</span>ops<span style="color: #c678dd;">)</span> <span style="color: #c678dd;">{</span>
+    <span style="color: #51afef;">case</span> <span style="color: #a9a1e1;">HW_BREAKPOINT_INSTALL</span>:
+        <span style="color: #525252;">/*</span>
+<span style="color: #525252;">         * Ensure debug monitors are enabled at the correct exception</span>
+<span style="color: #525252;">         * level.</span>
+<span style="color: #525252;">         */</span>
+        enable_debug_monitors<span style="color: #99bb66;">(</span>dbg_el<span style="color: #99bb66;">)</span>;
+        fallthrough;
+    <span style="color: #51afef;">case</span> <span style="color: #a9a1e1;">HW_BREAKPOINT_RESTORE</span>:
+        <span style="color: #525252;">/* </span><span style="color: #525252;">Setup the address register.</span><span style="color: #525252;"> */</span>
+        write_wb_reg<span style="color: #99bb66;">(</span>val_reg, i, info-&gt;address<span style="color: #99bb66;">)</span>;
+
+        <span style="color: #525252;">/* </span><span style="color: #525252;">Setup the control register.</span><span style="color: #525252;"> */</span>
+        ctrl = encode_ctrl_reg<span style="color: #99bb66;">(</span>info-&gt;ctrl<span style="color: #99bb66;">)</span>;
+        write_wb_reg<span style="color: #99bb66;">(</span>ctrl_reg, i,
+                 reg_enable ? ctrl | <span style="color: #dd8844; font-weight: bold;">0x1</span> : ctrl &amp; ~<span style="color: #dd8844; font-weight: bold;">0x1</span><span style="color: #99bb66;">)</span>;
+        <span style="color: #51afef;">break</span>;
+    <span style="color: #51afef;">case</span> <span style="color: #a9a1e1;">HW_BREAKPOINT_UNINSTALL</span>:
+        <span style="color: #525252;">/* </span><span style="color: #525252;">Reset the control register.</span><span style="color: #525252;"> */</span>
+        write_wb_reg<span style="color: #99bb66;">(</span>ctrl_reg, i, <span style="color: #dd8844; font-weight: bold;">0</span><span style="color: #99bb66;">)</span>;
+
+        <span style="color: #525252;">/*</span>
+<span style="color: #525252;">         * Release the debug monitors for the correct exception</span>
+<span style="color: #525252;">         * level.</span>
+<span style="color: #525252;">         */</span>
+        disable_debug_monitors<span style="color: #99bb66;">(</span>dbg_el<span style="color: #99bb66;">)</span>;
+        <span style="color: #51afef;">break</span>;
+    <span style="color: #c678dd;">}</span>
+
+    <span style="color: #51afef;">return</span> <span style="color: #dd8844; font-weight: bold;">0</span>;
+<span style="color: #51afef;">}</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 
-
-<div id="outline-container-orgaeb72ba" class="outline-2">
-<h2 id="orgaeb72ba"><span class="section-number-2">4</span> UNDO</h2>
+<div id="outline-container-orgfad8723" class="outline-2">
+<h2 id="orgfad8723"><span class="section-number-2">4</span> UNDO</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org1fc7c6b" class="outline-3">
-<h3 id="org1fc7c6b"><span class="section-number-3">4.1</span> system call</h3>
+<div id="outline-container-orgeddcc05" class="outline-3">
+<h3 id="orgeddcc05"><span class="section-number-3">4.1</span> system call</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 <a href="https://www.kernel.org/doc/html/latest/process/adding-syscalls.html">system call linux kernel docs</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org2bd48a2" class="outline-3">
-<h3 id="org2bd48a2"><span class="section-number-3">4.2</span> <span class="todo ___">[ ]</span> 修改 BCR, BVR 寄存器</h3>
+<div id="outline-container-orgb2d9637" class="outline-3">
+<h3 id="orgb2d9637"><span class="section-number-3">4.2</span> <span class="todo ___">[ ]</span> 修改 BCR, BVR 寄存器</h3>
 <div class="outline-text-3" id="text-4-2">
-<p>
+<ul class="org-ul">
+<li>ref <a href="https://developer.arm.com/docs/ddi0595/h/aarch64-system-registers/dbgbcrn_el1">DBGBCR</a></li>
+
+<li><p>
+code
 case HW<sub>BREAKPOINT</sub><sub>RESTORE</sub>:
     <i>* Setup the address register. *</i>
     write<sub>wb</sub><sub>reg</sub>(val<sub>reg</sub>, i, info-&gt;address);
@@ -674,10 +741,10 @@ ctrl = encode<sub>ctrl</sub><sub>reg</sub>(info-&gt;ctrl);
 write<sub>wb</sub><sub>reg</sub>(ctrl<sub>reg</sub>, i,
          reg<sub>enable</sub> ? ctrl | 0x1 : ctrl &amp; ~0x1);
 break;
-</p>
-
+</p></li>
+</ul>
 <p>
-[[<a href="file:///home/saint/Bionic-Builder/Kernel-SRC/linux-5.8/arch/arm64/kernel/hw_breakpoint.c#MissingReference">file:///home/saint/Bionic-Builder/Kernel-SRC/linux-5.8/arch/arm64/kernel/hw_breakpoint.c#MissingReference</a> HW<sub>BREAKPOINT</sub><sub>RESTORE</sub>:
+[[<a href="file:///home/headless/Bionic-Builder/Kernel-SRC/linux/arch/arm64/kernel/hw_breakpoint.c#MissingReference">file:///home/headless/Bionic-Builder/Kernel-SRC/linux/arch/arm64/kernel/hw_breakpoint.c#MissingReference</a> HW<sub>BREAKPOINT</sub><sub>RESTORE</sub>:
  <i>* Setup the address register. *</i>
  write<sub>wb</sub><sub>reg</sub>(val<sub>reg</sub>, i, info-&gt;address);
 </p>
@@ -695,7 +762,7 @@ break;]]
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: ST-Saint</p>
-<p class="date">Created: 2020-10-01 Thu 12:16</p>
+<p class="date">Created: 2020-10-01 Thu 09:08</p>
 </div>
 </body>
 </html>
