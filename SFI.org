@@ -67,7 +67,7 @@ sudo insmod xr_sub_serial_common.ko
 * DONE register hw\_breakpoint linux work flow
 CLOSED: [2020-10-01 Thu 20:35]
 
-- ~linux-5.8/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*~
+** ~linux-5.8/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*~
 
 #+BEGIN_SRC c
 /**
@@ -88,7 +88,7 @@ register_wide_hw_breakpoint(struct perf_event_attr *attr,
 						      triggered, context);
 #+END_SRC
 
-- ~linux-5.8/kernel/events/core.c *perf_event_create_kernel_counter*~
+** ~linux-5.8/kernel/events/core.c *perf_event_create_kernel_counter*~
 
  #+BEGIN_SRC  c
  /**
@@ -108,7 +108,7 @@ perf_event_create_kernel_counter(struct perf_event_attr *attr, int cpu,
                  overflow_handler, context, -1);
  #+END_SRC
 
-- ~linux-5.8/kernel/events/core.c *perf_event_alloc*~
+** ~linux-5.8/kernel/events/core.c *perf_event_alloc*~
   
  #+BEGIN_SRC c
  /*
@@ -137,8 +137,10 @@ perf_event_alloc(struct perf_event_attr *attr, int cpu,
 ...11110
 	pmu = perf_init_event(event);
  #+END_SRC
-- ~*perf_init_event*~
 
+** ~*perf_init_event*~
+
+- perf\_init\_event
 
 #+BEGIN_SRC c
 
@@ -264,7 +266,14 @@ int hw_breakpoint_arch_parse(struct perf_event *bp,
 }
  #+END_SRC
 
- - ~*hw_breakpoint_add*~
+** hw\_breakpoin info parse
+
+- ~arch_build_bp_info~
+
+  解析 ~perf_even->hw->info~
+
+** install hw breakpoint
+- ~*hw_breakpoint_add*~
 
 #+BEGIN_SRC c
 static int hw_breakpoint_add(struct perf_event *bp, int flags)
@@ -362,6 +371,40 @@ static int hw_breakpoint_control(struct perf_event *bp,
 
 
 
+* arch\_hw\_breakpoint struct
+
+** arch\_hw\_breakpoint
+
+#+BEGIN_SRC c
+struct hw_perf_event {
+    ...;
+	struct hw_perf_event		hw;
+    ...;
+}
+
+struct hw_petf_event{
+    ...;
+    struct arch_hw_breakpoint info;
+    ...;
+}
+
+struct arch_hw_breakpoint {
+	u64 address;
+	u64 trigger;
+	struct arch_hw_breakpoint_ctrl ctrl;
+};
+
+struct arch_hw_breakpoint_ctrl {
+	u32 __reserved	: 19,
+	len		: 8,
+	type		: 2,
+	privilege	: 2,
+	enabled		: 1;
+};
+#+END_SRC
+
+arch\_hw\_breakpoint->ctrl 位域实现 DBGWCR
+
 * DBG registers
 
 ** DBGBCR<n>_EL1
@@ -410,11 +453,11 @@ DBGBCR<n>_EL1.BT shoulde be 0b000x
   1 enabled
 
 
-
-* UNDO
-** system call
-[[https://www.kernel.org/doc/html/latest/process/adding-syscalls.html][system call linux kernel docs]]
-** [ ] 修改 BCR, BVR 寄存器
+* DONE 修改 BCR, BVR 寄存器
+CLOSED: [2020-10-02 Fri 17:14]
+:PROPERTIES:
+:ID:       50efcdc8-6a76-4e52-bef9-f546dd38fff4
+:END:
  - ref [[https://developer.arm.com/docs/ddi0595/h/aarch64-system-registers/dbgbcrn_el1][DBGBCR]]
 
  - code
@@ -430,3 +473,29 @@ DBGBCR<n>_EL1.BT shoulde be 0b000x
         break;
   #+END_SRC
 [[file:~/Bionic-Builder/Kernel-SRC/linux/arch/arm64/kernel/hw_breakpoint.c::case HW_BREAKPOINT_RESTORE:
+
+[[*hw\_breakpoin info parse][hw\_breakpoin info parse]]
+
+* DEBUGS
+
+** linux-v5.9
+*** HOLD 注册 watchpoint 之后马上被触发
+可能是堆地址
+** netlink
+*** TODO 普通用户权限传递给 netlink kernel
+普通用户无法注册 watchpoint
+sudo 权限可注册
+
+* UNDO
+** system call
+[[https://www.kernel.org/doc/html/latest/process/adding-syscalls.html][system call linux kernel docs]]
+** thread 切换
+*** option
+- 每个线程自己拥有自己的 breakpoint info, 线程切换时 unregister, register
+  1. 增加可用 watchpoint 数量
+  2. overhead
+  3. 加锁位置?
+
+- 所用进程共用 watchpoint, 切换时设置 disable
+  1. 数量有限
+  2. 效率
