@@ -12,6 +12,40 @@ sudo apt-get install gcc-aarch64-linux-gnu
 sudo apt-get install -y ccache python-pip build-essential kernel-package fakeroot libncurses5-dev libssl-dev gcc  git-core gnupg binfmt-support qemu qemu-user-static debootstrap simg2img
 #+END_SRC
 
+* BUGS
+
+** linux-v5.9
+*** HOLD 注册 watchpoint 之后马上被触发
+可能是堆地址
+
+** netlink
+*** TODO 普通用户权限传递给 netlink kernel
+普通用户无法注册 watchpoint
+sudo 权限可注册
+
+- 可用于保护 watchpoint 不被恶意使用
+
+** watchpoint
+
+触发之后无法跳出 trigger function
+
+[[https://stackoverflow.com/questions/28280813/register-wide-hw-breakpoint-continually-triggers-handler-callback][feature]]
+
+* UNDO
+** system call
+[[https://www.kernel.org/doc/html/latest/process/adding-syscalls.html][system call linux kernel docs]]
+** thread 切换
+*** option
+- 每个线程自己拥有自己的 breakpoint info, 线程切换时 unregister, register
+  1. 增加可用 watchpoint 数量
+  2. overhead
+  3. 加锁位置?
+
+- 所用进程共用 watchpoint, 切换时设置 disable
+  1. 数量有限
+  2. 效率
+
+
 * commands
 ** linux cross compile
 #+BEGIN_SRC bash
@@ -476,26 +510,3 @@ CLOSED: [2020-10-02 Fri 17:14]
 
 [[*hw\_breakpoin info parse][hw\_breakpoin info parse]]
 
-* DEBUGS
-
-** linux-v5.9
-*** HOLD 注册 watchpoint 之后马上被触发
-可能是堆地址
-** netlink
-*** TODO 普通用户权限传递给 netlink kernel
-普通用户无法注册 watchpoint
-sudo 权限可注册
-
-* UNDO
-** system call
-[[https://www.kernel.org/doc/html/latest/process/adding-syscalls.html][system call linux kernel docs]]
-** thread 切换
-*** option
-- 每个线程自己拥有自己的 breakpoint info, 线程切换时 unregister, register
-  1. 增加可用 watchpoint 数量
-  2. overhead
-  3. 加锁位置?
-
-- 所用进程共用 watchpoint, 切换时设置 disable
-  1. 数量有限
-  2. 效率
