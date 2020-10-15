@@ -5,18 +5,54 @@
 
 ** linux cross platform
 #+BEGIN_SRC bash
-sudo apt-get install gcc-aarch64-linux-gnu
+sudo apt-get install gcc-aarch64-linux-gnu flex bison
 #+END_SRC
 ** Bionic-Builder
 #+BEGIN_SRC bash
-sudo apt-get install -y ccache python-pip build-essential kernel-package fakeroot libncurses5-dev libssl-dev gcc  git-core gnupg binfmt-support qemu qemu-user-static debootstrap simg2img
+sudo apt-get install -y ccache python3-pip build-essential kernel-package fakeroot libncurses5-dev libssl-dev gcc git gnupg binfmt-support qemu qemu-user-static debootstrap simg2img
 #+END_SRC
 
 * BUGS
 
 ** linux-v5.9
 *** HOLD 注册 watchpoint 之后马上被触发
-可能是堆地址
+
+#+BEGIN_SRC
+
+[   59.904699] ------------[ cut here ]------------
+[   59.904713] WARNING: CPU: 5 PID: 0 at kernel/rcu/tree.c:630 rcu_eqs_enter.isra.83+0x84/0x90
+[   59.904714] Modules linked in: wl18xx wlcore mac80211 libarc4 cfg80211 rfkill wlcore_sdio crct10dif_ce ip_tables x_tables ipv6
+[   59.904730] CPU: 5 PID: 0 Comm: swapper/5 Not tainted 5.9.0-rc7-g48fe30379-dirty #15
+[   59.904731] Hardware name: HiKey970 (DT)
+[   59.904734] pstate: 200003c5 (nzCv DAIF -PAN -UAO BTYPE=--)
+[   59.904736] pc : rcu_eqs_enter.isra.83+0x84/0x90
+[   59.904742] lr : rcu_idle_enter+0x10/0x20
+[   59.904743] sp : ffff8000100c3f10
+[   59.904744] x29: ffff8000100c3f10 x28: 0000000000000000
+[   59.904746] x27: ffff0001b810d400 x26: 0000000000000000
+[   59.904748] x25: 0000000000000000 x24: ffff800011c3a2c4
+[   59.904751] x23: ffff80001181cf38 x22: ffff800011c39000
+[   59.904752] x21: ffff800011c3a000 x20: 0000000000000020
+[   59.904754] x19: ffff800011c3a1c8 x18: ffffffffffffffff
+[   59.904755] x17: 0000000000000000 x16: 0000000000000000
+[   59.904757] x15: 0000b2efefd0fc7e x14: 00000000000001a8
+[   59.904758] x13: 00000000000001a8 x12: 0000000000000001
+[   59.904760] x11: 0000000000000001 x10: 00000000000009c0
+[   59.904761] x9 : ffff8000100c3ea0 x8 : ffff0001b810de20
+[   59.904764] x7 : 00000000ffffffff x6 : 00000000081ac8c2
+[   59.904765] x5 : 00ffffffffffffff x4 : ffff800011e7d000
+[   59.904767] x3 : 4000000000000002 x2 : ffff80001181e000
+[   59.904768] x1 : 4000000000000000 x0 : ffff0001bf3a1e00
+[   59.904771] Call trace:
+[   59.904773]  rcu_eqs_enter.isra.83+0x84/0x90
+[   59.904776]  rcu_idle_enter+0x10/0x20
+[   59.904778]  default_idle_call+0x20/0x50
+[   59.904780]  do_idle+0x1e4/0x280
+[   59.904782]  cpu_startup_entry+0x24/0x68
+[   59.904786]  secondary_start_kernel+0x1ac/0x200
+[   59.904788] ---[ end trace 973e77280e8fd726 ]---
+
+#+END_SRC
 
 ** netlink
 *** TODO 普通用户权限传递给 netlink kernel
@@ -31,9 +67,13 @@ sudo 权限可注册
 
 [[https://stackoverflow.com/questions/28280813/register-wide-hw-breakpoint-continually-triggers-handler-callback][feature]]
 
-* UNDO
-** system call
+* system call
 [[https://www.kernel.org/doc/html/latest/process/adding-syscalls.html][system call linux kernel docs]]
+
+*** t
+include/linux/syscalls.h
+
+* UNDO
 ** thread 切换
 *** option
 - 每个线程自己拥有自己的 breakpoint info, 线程切换时 unregister, register
