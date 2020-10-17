@@ -1,4 +1,5 @@
 #+TITLE: SFI
+#+OPTIONS: ^:nil
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
 * Prerequisites
@@ -12,9 +13,9 @@ sudo apt-get install gcc-aarch64-linux-gnu flex bison
 sudo apt-get install -y ccache python3-pip build-essential kernel-package fakeroot libncurses5-dev libssl-dev gcc git gnupg binfmt-support qemu qemu-user-static debootstrap simg2img
 #+END_SRC
 
-* BUGS
+* [3/5] BUGS
 
-** linux-v5.9
+** TODO linux-v5.9
 *** HOLD 注册 watchpoint 之后马上被触发
 
 #+BEGIN_SRC
@@ -54,29 +55,32 @@ sudo apt-get install -y ccache python3-pip build-essential kernel-package fakero
 
 #+END_SRC
 
-** netlink
-*** TODO 普通用户权限传递给 netlink kernel
-普通用户无法注册 watchpoint
-sudo 权限可注册
+__arm64_sys_watchpoint_register_backtrace
+[[file:figures/__arm64_sys_watchpoint_register_backtrace.png]]
 
-- 可用于保护 watchpoint 不被恶意使用
+trigger_backtrace
+[[file:figures/trigger_backtrace.png]]
 
-** watchpoint
+** [X] watchpoint
+CLOSED: [2020-10-15 Thu 18:16]
 
 触发之后无法跳出 trigger function
 
 [[https://stackoverflow.com/questions/28280813/register-wide-hw-breakpoint-continually-triggers-handler-callback][feature]]
 
-* system call
-[[https://www.kernel.org/doc/html/latest/process/adding-syscalls.html][system call linux kernel docs]]
+** KILL netlink
+CLOSED: [2020-10-15 Thu 18:16]
+*** DONE 普通用户权限传递给 netlink kernel
+CLOSED: [2020-10-15 Thu 18:16]
+普通用户无法注册 watchpoint
+sudo 权限可注册
 
-*** t
-include/linux/syscalls.h
+- 可用于保护 watchpoint 不被恶意使用
 
 * UNDO
-** thread 切换
+** thread
 *** option
-- 每个线程自己拥有自己的 breakpoint info, 线程切换时 unregister, register
+- +每个线程自己拥有自己的 breakpoint info, 线程切换时 unregister, register+
   1. 增加可用 watchpoint 数量
   2. overhead
   3. 加锁位置?
@@ -86,14 +90,53 @@ include/linux/syscalls.h
   2. 效率
 
 
+*** [ ] enable / disable watchpoint domain in context switching
+    Update watchpoints.
+
+[[file:~/Bionic-Builder/Kernel-SRC/linux-5.8/arch/arm64/kernel/hw_breakpoint.c::Update watchpoints.]]
+
+*** [ ] inherit watchpoint domain in fork
+    err = arch_dup_task_struct(tsk, orig);
+
+[[file:~/Bionic-Builder/Kernel-SRC/linux-5.8/kernel/fork.c::err = arch_dup_task_struct(tsk, orig);]]
+
+* system call
+[[https://www.kernel.org/doc/html/latest/process/adding-syscalls.html][system call linux kernel docs]]
+
+*** include/linux/syscalls.h
+#+BEGIN_SRC c
+asmlinkage long __arm64_sys_register_watchpoint(unsigned long addr);
+#+END_SRC
+
+*** linux/include/uapi/asm-generic/unistd.h
+#+BEGIN_SRC c
+#ifdef CONFIG_AWID
+#define __NR_register_watchpoint 440                                                                                                                                               
+__SYSCALL(__NR_register_watchpoint, sys_register_watchpoint)                                                                                                                       
+#endif
+#+END_SRC
+
 * commands
 ** linux cross compile
 #+BEGIN_SRC bash
 sudo make -j20 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- hikey970_defconfig
 sudo make -j20 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- all
 #+END_SRC
-** network
+** kgdb
+*** host side
+#+BEGIN_SRC bash
+aarch64-linux-gnu-gdb vmlinux -ex "set serial baud 115200"
 
+target remote /dev/ttyXRUSB0
+#+END_SRC
+
+*** target side
+#+BEGIN_SRC
+sudo echo g > /proc/sysrq-trigger
+#+END_SRC
+
+
+** network
 - connect wifi from terminal
  
  #+BEGIN_SRC bash
