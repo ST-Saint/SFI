@@ -93,12 +93,12 @@ sudo 权限可注册
 *** [ ] enable / disable watchpoint domain in context switching
     Update watchpoints.
 
-[[file:~/Bionic-Builder/Kernel-SRC/linux-5.8/arch/arm64/kernel/hw_breakpoint.c::Update watchpoints.]]
+[[file:~/Bionic-Builder/Kernel-SRC/linux/arch/arm64/kernel/hw_breakpoint.c::Update watchpoints.]]
 
 *** [ ] inherit watchpoint domain in fork
     err = arch_dup_task_struct(tsk, orig);
 
-[[file:~/Bionic-Builder/Kernel-SRC/linux-5.8/kernel/fork.c::err = arch_dup_task_struct(tsk, orig);]]
+[[file:~/Bionic-Builder/Kernel-SRC/linux/kernel/fork.c::err = arch_dup_task_struct(tsk, orig);]]
 
 * system call
 [[https://www.kernel.org/doc/html/latest/process/adding-syscalls.html][system call linux kernel docs]]
@@ -184,7 +184,7 @@ sudo insmod xr_sub_serial_common.ko
 * DONE register hw\_breakpoint linux work flow
 CLOSED: [2020-10-01 Thu 20:35]
 
-** ~linux-5.8/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*~
+** ~linux/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*~
 
 #+BEGIN_SRC c
 /**
@@ -205,7 +205,7 @@ register_wide_hw_breakpoint(struct perf_event_attr *attr,
 						      triggered, context);
 #+END_SRC
 
-** ~linux-5.8/kernel/events/core.c *perf_event_create_kernel_counter*~
+** ~linux/kernel/events/core.c *perf_event_create_kernel_counter*~
 
  #+BEGIN_SRC  c
  /**
@@ -225,7 +225,7 @@ perf_event_create_kernel_counter(struct perf_event_attr *attr, int cpu,
                  overflow_handler, context, -1);
  #+END_SRC
 
-** ~linux-5.8/kernel/events/core.c *perf_event_alloc*~
+** ~linux/kernel/events/core.c *perf_event_alloc*~
   
  #+BEGIN_SRC c
  /*
@@ -269,7 +269,7 @@ call ~*pmu.event_init(event)*~
 
 ...
 
-- ~linux-5.8/kernel/events/hw_breakpoint.c~
+- ~linux/kernel/events/hw_breakpoint.c~
  
 #+BEGIN_SRC c
 static struct pmu perf_breakpoint = {
@@ -407,7 +407,7 @@ static int hw_breakpoint_add(struct perf_event *bp, int flags)
 }
 #+END_SRC
 
-- ~linux-5.8/arch/arm64/kernel/hw_breakpoint.c *arch_install_hw_breakpoint*~
+- ~linux/arch/arm64/kernel/hw_breakpoint.c *arch_install_hw_breakpoint*~
 
  #+BEGIN_SRC c
 /*
@@ -420,7 +420,7 @@ int arch_install_hw_breakpoint(struct perf_event *bp)
 
  #+END_SRC
 
-- ~linux-5.8/arch/arm64/kernel/hw_breakpoint.c *hw_breakpoint_control*~
+- ~linux/arch/arm64/kernel/hw_breakpoint.c *hw_breakpoint_control*~
 #+BEGIN_SRC c
 static int hw_breakpoint_control(struct perf_event *bp,
 				 enum hw_breakpoint_ops ops)

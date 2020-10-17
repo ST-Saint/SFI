@@ -4,7 +4,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-10-17 Sat 13:00 -->
+<!-- 2020-10-17 Sat 13:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SFI</title>
@@ -232,103 +232,103 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8d2e68d">1. Prerequisites</a>
+<li><a href="#org070cdae">1. Prerequisites</a>
 <ul>
-<li><a href="#org2a72bc0">1.1. linux cross platform</a></li>
-<li><a href="#orgfd1a5d6">1.2. Bionic-Builder</a></li>
+<li><a href="#orgbd7e86c">1.1. linux cross platform</a></li>
+<li><a href="#orgb033668">1.2. Bionic-Builder</a></li>
 </ul>
 </li>
-<li><a href="#orge5489ea">2. <code>[3/5]</code> BUGS</a>
+<li><a href="#orga2da358">2. <code>[3/5]</code> BUGS</a>
 <ul>
-<li><a href="#org62f673a">2.1. <span class="todo TODO">TODO</span> linux-v5.9</a>
+<li><a href="#orgfe12b0b">2.1. <span class="todo TODO">TODO</span> linux-v5.9</a>
 <ul>
-<li><a href="#org9d1c70f">2.1.1. <span class="todo HOLD">HOLD</span> 注册 watchpoint 之后马上被触发</a></li>
+<li><a href="#org60459d5">2.1.1. <span class="todo HOLD">HOLD</span> 注册 watchpoint 之后马上被触发</a></li>
 </ul>
 </li>
-<li><a href="#orgaba59d5">2.2. <span class="done _X_">[X]</span> watchpoint</a></li>
-<li><a href="#org3693f04">2.3. <span class="done KILL">KILL</span> netlink</a>
+<li><a href="#org5996b2b">2.2. <span class="done _X_">[X]</span> watchpoint</a></li>
+<li><a href="#org8206d38">2.3. <span class="done KILL">KILL</span> netlink</a>
 <ul>
-<li><a href="#orgfc9ea69">2.3.1. <span class="done DONE">DONE</span> 普通用户权限传递给 netlink kernel</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgcbad749">3. UNDO</a>
-<ul>
-<li><a href="#org86e3749">3.1. thread</a>
-<ul>
-<li><a href="#orgbefff7d">3.1.1. option</a></li>
-<li><a href="#org178094d">3.1.2. <span class="todo ___">[ ]</span> enable / disable watchpoint domain in context switching</a></li>
-<li><a href="#org5b5f78b">3.1.3. <span class="todo ___">[ ]</span> inherit watchpoint domain in fork</a></li>
+<li><a href="#orge5410e1">2.3.1. <span class="done DONE">DONE</span> 普通用户权限传递给 netlink kernel</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9515271">4. system call</a>
+<li><a href="#org9157a2a">3. UNDO</a>
+<ul>
+<li><a href="#org1aa0e29">3.1. thread</a>
+<ul>
+<li><a href="#orgf3dc1c2">3.1.1. option</a></li>
+<li><a href="#org65f543a">3.1.2. <span class="todo ___">[ ]</span> enable / disable watchpoint domain in context switching</a></li>
+<li><a href="#org5c54674">3.1.3. <span class="todo ___">[ ]</span> inherit watchpoint domain in fork</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf5e5f4e">4. system call</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgf73bf63">4.0.1. include/linux/syscalls.h</a></li>
-<li><a href="#orgc57f5f9">4.0.2. linux/include/uapi/asm-generic/unistd.h</a></li>
+<li><a href="#org9991116">4.0.1. include/linux/syscalls.h</a></li>
+<li><a href="#org1b4c44c">4.0.2. linux/include/uapi/asm-generic/unistd.h</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org21b5678">5. commands</a>
+<li><a href="#org3481ff6">5. commands</a>
 <ul>
-<li><a href="#org5bf40bf">5.1. linux cross compile</a></li>
-<li><a href="#org233a485">5.2. kgdb</a>
+<li><a href="#org58f657c">5.1. linux cross compile</a></li>
+<li><a href="#orge304b43">5.2. kgdb</a>
 <ul>
-<li><a href="#orgf60694a">5.2.1. host side</a></li>
-<li><a href="#org992a47a">5.2.2. target side</a></li>
+<li><a href="#orgc3431c5">5.2.1. host side</a></li>
+<li><a href="#orgf455067">5.2.2. target side</a></li>
 </ul>
 </li>
-<li><a href="#orgac15f8f">5.3. network</a></li>
+<li><a href="#org2709fe8">5.3. network</a></li>
 </ul>
 </li>
-<li><a href="#org96322a8">6. <span class="done DONE">DONE</span> USB Serial Debug</a>
+<li><a href="#org7c31d71">6. <span class="done DONE">DONE</span> USB Serial Debug</a>
 <ul>
-<li><a href="#org63eaa1b">6.1. <code>[1/1]</code> issue</a>
+<li><a href="#orge612f87">6.1. <code>[1/1]</code> issue</a>
 <ul>
-<li><a href="#org8cb8f00">6.1.1. <span class="done DONE">DONE</span> ttyACM 无法输入</a></li>
+<li><a href="#org279926b">6.1.1. <span class="done DONE">DONE</span> ttyACM 无法输入</a></li>
 </ul>
 </li>
-<li><a href="#org1f8ee57">6.2. 串口调试</a></li>
+<li><a href="#org323328e">6.2. 串口调试</a></li>
 </ul>
 </li>
-<li><a href="#orgf50ef03">7. <span class="done DONE">DONE</span> register hw\_breakpoint linux work flow</a>
+<li><a href="#org2d9d98f">7. <span class="done DONE">DONE</span> register hw\_breakpoint linux work flow</a>
 <ul>
-<li><a href="#orgc6cbacf">7.1. <code>linux-5.8/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*</code></a></li>
-<li><a href="#orgcf5d984">7.2. <code>linux-5.8/kernel/events/core.c *perf_event_create_kernel_counter*</code></a></li>
-<li><a href="#orgb931413">7.3. <code>linux-5.8/kernel/events/core.c *perf_event_alloc*</code></a></li>
-<li><a href="#org52f5fb8">7.4. <code>*perf_init_event*</code></a></li>
-<li><a href="#org06a2606">7.5. hw\_breakpoin info parse</a></li>
-<li><a href="#orgbd61b77">7.6. install hw breakpoint</a></li>
+<li><a href="#org7472021">7.1. <code>linux/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*</code></a></li>
+<li><a href="#org6bcba01">7.2. <code>linux/kernel/events/core.c *perf_event_create_kernel_counter*</code></a></li>
+<li><a href="#orgaae40d4">7.3. <code>linux/kernel/events/core.c *perf_event_alloc*</code></a></li>
+<li><a href="#orgc2d49de">7.4. <code>*perf_init_event*</code></a></li>
+<li><a href="#orge22800b">7.5. hw\_breakpoin info parse</a></li>
+<li><a href="#org944337c">7.6. install hw breakpoint</a></li>
 </ul>
 </li>
-<li><a href="#org034481e">8. arch\_hw\_breakpoint struct</a>
+<li><a href="#org6fba890">8. arch\_hw\_breakpoint struct</a>
 <ul>
-<li><a href="#orgec565d7">8.1. arch\_hw\_breakpoint</a></li>
+<li><a href="#orgf21f09c">8.1. arch\_hw\_breakpoint</a></li>
 </ul>
 </li>
-<li><a href="#orge234618">9. DBG registers</a>
+<li><a href="#org4fcc2b8">9. DBG registers</a>
 <ul>
-<li><a href="#org00e6321">9.1. DBGBCR&lt;n&gt;_EL1</a></li>
-<li><a href="#orga3b3704">9.2. DBGBVR&lt;n&gt;_EL1</a></li>
-<li><a href="#org047763a">9.3. DBGWCR&lt;n&gt;_EL1</a></li>
+<li><a href="#org1cad74a">9.1. DBGBCR&lt;n&gt;_EL1</a></li>
+<li><a href="#orgd547527">9.2. DBGBVR&lt;n&gt;_EL1</a></li>
+<li><a href="#org60c5a0b">9.3. DBGWCR&lt;n&gt;_EL1</a></li>
 </ul>
 </li>
-<li><a href="#org013da1a">10. <span class="done DONE">DONE</span> 修改 BCR, BVR 寄存器</a></li>
+<li><a href="#org41bda32">10. <span class="done DONE">DONE</span> 修改 BCR, BVR 寄存器</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8d2e68d" class="outline-2">
-<h2 id="org8d2e68d"><span class="section-number-2">1</span> Prerequisites</h2>
+<div id="outline-container-org070cdae" class="outline-2">
+<h2 id="org070cdae"><span class="section-number-2">1</span> Prerequisites</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org2a72bc0" class="outline-3">
-<h3 id="org2a72bc0"><span class="section-number-3">1.1</span> linux cross platform</h3>
+<div id="outline-container-orgbd7e86c" class="outline-3">
+<h3 id="orgbd7e86c"><span class="section-number-3">1.1</span> linux cross platform</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #ECBE7B;">sudo</span> apt-get install gcc-aarch64-linux-gnu flex bison
@@ -336,8 +336,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgfd1a5d6" class="outline-3">
-<h3 id="orgfd1a5d6"><span class="section-number-3">1.2</span> Bionic-Builder</h3>
+<div id="outline-container-orgb033668" class="outline-3">
+<h3 id="orgb033668"><span class="section-number-3">1.2</span> Bionic-Builder</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #ECBE7B;">sudo</span> apt-get install -y ccache python3-pip build-essential kernel-package fakeroot libncurses5-dev libssl-dev gcc <span style="color: #ECBE7B;">git</span> gnupg binfmt-support qemu qemu-user-static debootstrap simg2img
@@ -347,16 +347,16 @@
 </div>
 </div>
 
-<div id="outline-container-orge5489ea" class="outline-2">
-<h2 id="orge5489ea"><span class="section-number-2">2</span> <code>[3/5]</code> BUGS</h2>
+<div id="outline-container-orga2da358" class="outline-2">
+<h2 id="orga2da358"><span class="section-number-2">2</span> <code>[3/5]</code> BUGS</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org62f673a" class="outline-3">
-<h3 id="org62f673a"><span class="section-number-3">2.1</span> <span class="todo TODO">TODO</span> linux-v5.9</h3>
+<div id="outline-container-orgfe12b0b" class="outline-3">
+<h3 id="orgfe12b0b"><span class="section-number-3">2.1</span> <span class="todo TODO">TODO</span> linux-v5.9</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org9d1c70f" class="outline-4">
-<h4 id="org9d1c70f"><span class="section-number-4">2.1.1</span> <span class="todo HOLD">HOLD</span> 注册 watchpoint 之后马上被触发</h4>
+<div id="outline-container-org60459d5" class="outline-4">
+<h4 id="org60459d5"><span class="section-number-4">2.1.1</span> <span class="todo HOLD">HOLD</span> 注册 watchpoint 之后马上被触发</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <pre class="example">
 
@@ -408,8 +408,8 @@ trigger_backtrace
 </div>
 </div>
 
-<div id="outline-container-orgaba59d5" class="outline-3">
-<h3 id="orgaba59d5"><span class="section-number-3">2.2</span> <span class="done _X_">[X]</span> watchpoint</h3>
+<div id="outline-container-org5996b2b" class="outline-3">
+<h3 id="org5996b2b"><span class="section-number-3">2.2</span> <span class="done _X_">[X]</span> watchpoint</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 触发之后无法跳出 trigger function
@@ -421,12 +421,12 @@ trigger_backtrace
 </div>
 </div>
 
-<div id="outline-container-org3693f04" class="outline-3">
-<h3 id="org3693f04"><span class="section-number-3">2.3</span> <span class="done KILL">KILL</span> netlink</h3>
+<div id="outline-container-org8206d38" class="outline-3">
+<h3 id="org8206d38"><span class="section-number-3">2.3</span> <span class="done KILL">KILL</span> netlink</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orgfc9ea69" class="outline-4">
-<h4 id="orgfc9ea69"><span class="section-number-4">2.3.1</span> <span class="done DONE">DONE</span> 普通用户权限传递给 netlink kernel</h4>
+<div id="outline-container-orge5410e1" class="outline-4">
+<h4 id="orge5410e1"><span class="section-number-4">2.3.1</span> <span class="done DONE">DONE</span> 普通用户权限传递给 netlink kernel</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 普通用户无法注册 watchpoint
@@ -441,16 +441,16 @@ sudo 权限可注册
 </div>
 </div>
 
-<div id="outline-container-orgcbad749" class="outline-2">
-<h2 id="orgcbad749"><span class="section-number-2">3</span> UNDO</h2>
+<div id="outline-container-org9157a2a" class="outline-2">
+<h2 id="org9157a2a"><span class="section-number-2">3</span> UNDO</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org86e3749" class="outline-3">
-<h3 id="org86e3749"><span class="section-number-3">3.1</span> thread</h3>
+<div id="outline-container-org1aa0e29" class="outline-3">
+<h3 id="org1aa0e29"><span class="section-number-3">3.1</span> thread</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-orgbefff7d" class="outline-4">
-<h4 id="orgbefff7d"><span class="section-number-4">3.1.1</span> option</h4>
+<div id="outline-container-orgf3dc1c2" class="outline-4">
+<h4 id="orgf3dc1c2"><span class="section-number-4">3.1.1</span> option</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li><del>每个线程自己拥有自己的 breakpoint info, 线程切换时 unregister, register</del>
@@ -470,44 +470,44 @@ sudo 权限可注册
 </div>
 
 
-<div id="outline-container-org178094d" class="outline-4">
-<h4 id="org178094d"><span class="section-number-4">3.1.2</span> <span class="todo ___">[ ]</span> enable / disable watchpoint domain in context switching</h4>
+<div id="outline-container-org65f543a" class="outline-4">
+<h4 id="org65f543a"><span class="section-number-4">3.1.2</span> <span class="todo ___">[ ]</span> enable / disable watchpoint domain in context switching</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 Update watchpoints.
 </p>
 
 <p>
-<a href="file:///home/saint/Bionic-Builder/Kernel-SRC/linux-5.8/arch/arm64/kernel/hw_breakpoint.c#MissingReference">file:///home/saint/Bionic-Builder/Kernel-SRC/linux-5.8/arch/arm64/kernel/hw_breakpoint.c#MissingReference</a>
+<a href="file:///home/saint/Bionic-Builder/Kernel-SRC/linux/arch/arm64/kernel/hw_breakpoint.c#MissingReference">file:///home/saint/Bionic-Builder/Kernel-SRC/linux/arch/arm64/kernel/hw_breakpoint.c#MissingReference</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5b5f78b" class="outline-4">
-<h4 id="org5b5f78b"><span class="section-number-4">3.1.3</span> <span class="todo ___">[ ]</span> inherit watchpoint domain in fork</h4>
+<div id="outline-container-org5c54674" class="outline-4">
+<h4 id="org5c54674"><span class="section-number-4">3.1.3</span> <span class="todo ___">[ ]</span> inherit watchpoint domain in fork</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 err = arch_dup_task_struct(tsk, orig);
 </p>
 
 <p>
-<a href="file:///home/saint/Bionic-Builder/Kernel-SRC/linux-5.8/kernel/fork.c#MissingReference">file:///home/saint/Bionic-Builder/Kernel-SRC/linux-5.8/kernel/fork.c#MissingReference</a>
+<a href="file:///home/saint/Bionic-Builder/Kernel-SRC/linux/kernel/fork.c#MissingReference">file:///home/saint/Bionic-Builder/Kernel-SRC/linux/kernel/fork.c#MissingReference</a>
 </p>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org9515271" class="outline-2">
-<h2 id="org9515271"><span class="section-number-2">4</span> system call</h2>
+<div id="outline-container-orgf5e5f4e" class="outline-2">
+<h2 id="orgf5e5f4e"><span class="section-number-2">4</span> system call</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <a href="https://www.kernel.org/doc/html/latest/process/adding-syscalls.html">system call linux kernel docs</a>
 </p>
 </div>
 
-<div id="outline-container-orgf73bf63" class="outline-4">
-<h4 id="orgf73bf63"><span class="section-number-4">4.0.1</span> include/linux/syscalls.h</h4>
+<div id="outline-container-org9991116" class="outline-4">
+<h4 id="org9991116"><span class="section-number-4">4.0.1</span> include/linux/syscalls.h</h4>
 <div class="outline-text-4" id="text-4-0-1">
 <div class="org-src-container">
 <pre class="src src-c">asmlinkage <span style="color: #ECBE7B;">long</span> <span style="color: #c678dd;">__arm64_sys_register_watchpoint</span><span style="color: #51afef;">(</span><span style="color: #ECBE7B;">unsigned</span> <span style="color: #ECBE7B;">long</span> <span style="color: #dcaeea;">addr</span><span style="color: #51afef;">)</span>;
@@ -516,8 +516,8 @@ err = arch_dup_task_struct(tsk, orig);
 </div>
 </div>
 
-<div id="outline-container-orgc57f5f9" class="outline-4">
-<h4 id="orgc57f5f9"><span class="section-number-4">4.0.2</span> linux/include/uapi/asm-generic/unistd.h</h4>
+<div id="outline-container-org1b4c44c" class="outline-4">
+<h4 id="org1b4c44c"><span class="section-number-4">4.0.2</span> linux/include/uapi/asm-generic/unistd.h</h4>
 <div class="outline-text-4" id="text-4-0-2">
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #51afef; font-weight: bold;">#ifdef</span> <span style="color: #a9a1e1;">CONFIG_AWID</span>
@@ -530,12 +530,12 @@ err = arch_dup_task_struct(tsk, orig);
 </div>
 </div>
 
-<div id="outline-container-org21b5678" class="outline-2">
-<h2 id="org21b5678"><span class="section-number-2">5</span> commands</h2>
+<div id="outline-container-org3481ff6" class="outline-2">
+<h2 id="org3481ff6"><span class="section-number-2">5</span> commands</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org5bf40bf" class="outline-3">
-<h3 id="org5bf40bf"><span class="section-number-3">5.1</span> linux cross compile</h3>
+<div id="outline-container-org58f657c" class="outline-3">
+<h3 id="org58f657c"><span class="section-number-3">5.1</span> linux cross compile</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-bash"><span style="color: #ECBE7B;">sudo</span> <span style="color: #ECBE7B;">make</span> -j20 <span style="color: #dcaeea;">ARCH</span>=arm64 <span style="color: #dcaeea;">CROSS_COMPILE</span>=aarch64-linux-gnu- hikey970_defconfig
@@ -544,12 +544,12 @@ err = arch_dup_task_struct(tsk, orig);
 </div>
 </div>
 </div>
-<div id="outline-container-org233a485" class="outline-3">
-<h3 id="org233a485"><span class="section-number-3">5.2</span> kgdb</h3>
+<div id="outline-container-orge304b43" class="outline-3">
+<h3 id="orge304b43"><span class="section-number-3">5.2</span> kgdb</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-orgf60694a" class="outline-4">
-<h4 id="orgf60694a"><span class="section-number-4">5.2.1</span> host side</h4>
+<div id="outline-container-orgc3431c5" class="outline-4">
+<h4 id="orgc3431c5"><span class="section-number-4">5.2.1</span> host side</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <div class="org-src-container">
 <pre class="src src-bash">aarch64-linux-gnu-gdb vmlinux -ex <span style="color: #98be65;">"set serial baud 115200"</span>
@@ -560,8 +560,8 @@ target remote /dev/ttyXRUSB0
 </div>
 </div>
 
-<div id="outline-container-org992a47a" class="outline-4">
-<h4 id="org992a47a"><span class="section-number-4">5.2.2</span> target side</h4>
+<div id="outline-container-orgf455067" class="outline-4">
+<h4 id="orgf455067"><span class="section-number-4">5.2.2</span> target side</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <pre class="example">
 sudo echo g &gt; /proc/sysrq-trigger
@@ -571,8 +571,8 @@ sudo echo g &gt; /proc/sysrq-trigger
 </div>
 
 
-<div id="outline-container-orgac15f8f" class="outline-3">
-<h3 id="orgac15f8f"><span class="section-number-3">5.3</span> network</h3>
+<div id="outline-container-org2709fe8" class="outline-3">
+<h3 id="org2709fe8"><span class="section-number-3">5.3</span> network</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li><p>
@@ -597,16 +597,16 @@ control
 </div>
 
 
-<div id="outline-container-org96322a8" class="outline-2">
-<h2 id="org96322a8"><span class="section-number-2">6</span> <span class="done DONE">DONE</span> USB Serial Debug</h2>
+<div id="outline-container-org7c31d71" class="outline-2">
+<h2 id="org7c31d71"><span class="section-number-2">6</span> <span class="done DONE">DONE</span> USB Serial Debug</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org63eaa1b" class="outline-3">
-<h3 id="org63eaa1b"><span class="section-number-3">6.1</span> <code>[1/1]</code> issue</h3>
+<div id="outline-container-orge612f87" class="outline-3">
+<h3 id="orge612f87"><span class="section-number-3">6.1</span> <code>[1/1]</code> issue</h3>
 <div class="outline-text-3" id="text-6-1">
 </div>
-<div id="outline-container-org8cb8f00" class="outline-4">
-<h4 id="org8cb8f00"><span class="section-number-4">6.1.1</span> <span class="done DONE">DONE</span> ttyACM 无法输入</h4>
+<div id="outline-container-org279926b" class="outline-4">
+<h4 id="org279926b"><span class="section-number-4">6.1.1</span> <span class="done DONE">DONE</span> ttyACM 无法输入</h4>
 <div class="outline-text-4" id="text-6-1-1">
 <p>
 <a href="https://discuss.96boards.org/t/how-to-connect-to-console-in-hikey970-in-android/5484/10">XR21V1410 USB-UART</a>
@@ -644,8 +644,8 @@ So if you need to use this port, please build the driver(just google xr21b14 dri
 </div>
 </div>
 
-<div id="outline-container-org1f8ee57" class="outline-3">
-<h3 id="org1f8ee57"><span class="section-number-3">6.2</span> 串口调试</h3>
+<div id="outline-container-org323328e" class="outline-3">
+<h3 id="org323328e"><span class="section-number-3">6.2</span> 串口调试</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>minicom 115200 8N1</li>
@@ -656,13 +656,13 @@ So if you need to use this port, please build the driver(just google xr21b14 dri
 </div>
 
 
-<div id="outline-container-orgf50ef03" class="outline-2">
-<h2 id="orgf50ef03"><span class="section-number-2">7</span> <span class="done DONE">DONE</span> register hw\_breakpoint linux work flow</h2>
+<div id="outline-container-org2d9d98f" class="outline-2">
+<h2 id="org2d9d98f"><span class="section-number-2">7</span> <span class="done DONE">DONE</span> register hw\_breakpoint linux work flow</h2>
 <div class="outline-text-2" id="text-7">
 </div>
 
-<div id="outline-container-orgc6cbacf" class="outline-3">
-<h3 id="orgc6cbacf"><span class="section-number-3">7.1</span> <code>linux-5.8/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*</code></h3>
+<div id="outline-container-org7472021" class="outline-3">
+<h3 id="org7472021"><span class="section-number-3">7.1</span> <code>linux/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*</code></h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #83898d;">/**</span>
@@ -686,8 +686,8 @@ register_wide_hw_breakpoint<span style="color: #51afef;">(</span><span style="co
 </div>
 </div>
 
-<div id="outline-container-orgcf5d984" class="outline-3">
-<h3 id="orgcf5d984"><span class="section-number-3">7.2</span> <code>linux-5.8/kernel/events/core.c *perf_event_create_kernel_counter*</code></h3>
+<div id="outline-container-org6bcba01" class="outline-3">
+<h3 id="org6bcba01"><span class="section-number-3">7.2</span> <code>linux/kernel/events/core.c *perf_event_create_kernel_counter*</code></h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-c"> <span style="color: #83898d;">/**</span>
@@ -710,8 +710,8 @@ register_wide_hw_breakpoint<span style="color: #51afef;">(</span><span style="co
 </div>
 </div>
 
-<div id="outline-container-orgb931413" class="outline-3">
-<h3 id="orgb931413"><span class="section-number-3">7.3</span> <code>linux-5.8/kernel/events/core.c *perf_event_alloc*</code></h3>
+<div id="outline-container-orgaae40d4" class="outline-3">
+<h3 id="orgaae40d4"><span class="section-number-3">7.3</span> <code>linux/kernel/events/core.c *perf_event_alloc*</code></h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-c"> <span style="color: #5B6268;">/*</span>
@@ -744,8 +744,8 @@ register_wide_hw_breakpoint<span style="color: #51afef;">(</span><span style="co
 </div>
 </div>
 
-<div id="outline-container-org52f5fb8" class="outline-3">
-<h3 id="org52f5fb8"><span class="section-number-3">7.4</span> <code>*perf_init_event*</code></h3>
+<div id="outline-container-orgc2d49de" class="outline-3">
+<h3 id="orgc2d49de"><span class="section-number-3">7.4</span> <code>*perf_init_event*</code></h3>
 <div class="outline-text-3" id="text-7-4">
 <ul class="org-ul">
 <li>perf\_init\_event</li>
@@ -767,7 +767,7 @@ call <code>*pmu.event_init(event)*</code>
 </p>
 
 <ul class="org-ul">
-<li><code>linux-5.8/kernel/events/hw_breakpoint.c</code></li>
+<li><code>linux/kernel/events/hw_breakpoint.c</code></li>
 </ul>
 
 <div class="org-src-container">
@@ -901,8 +901,8 @@ reserve / release 加锁
 </div>
 </div>
 
-<div id="outline-container-org06a2606" class="outline-3">
-<h3 id="org06a2606"><span class="section-number-3">7.5</span> hw\_breakpoin info parse</h3>
+<div id="outline-container-orge22800b" class="outline-3">
+<h3 id="orge22800b"><span class="section-number-3">7.5</span> hw\_breakpoin info parse</h3>
 <div class="outline-text-3" id="text-7-5">
 <ul class="org-ul">
 <li><p>
@@ -916,8 +916,8 @@ reserve / release 加锁
 </div>
 </div>
 
-<div id="outline-container-orgbd61b77" class="outline-3">
-<h3 id="orgbd61b77"><span class="section-number-3">7.6</span> install hw breakpoint</h3>
+<div id="outline-container-org944337c" class="outline-3">
+<h3 id="org944337c"><span class="section-number-3">7.6</span> install hw breakpoint</h3>
 <div class="outline-text-3" id="text-7-6">
 <ul class="org-ul">
 <li><code>*hw_breakpoint_add*</code></li>
@@ -941,7 +941,7 @@ reserve / release 加锁
 
 <ul class="org-ul">
 <li><p>
-<code>linux-5.8/arch/arm64/kernel/hw_breakpoint.c *arch_install_hw_breakpoint*</code>
+<code>linux/arch/arm64/kernel/hw_breakpoint.c *arch_install_hw_breakpoint*</code>
 </p>
 
 <div class="org-src-container">
@@ -956,7 +956,7 @@ reserve / release 加锁
 </pre>
 </div></li>
 
-<li><code>linux-5.8/arch/arm64/kernel/hw_breakpoint.c *hw_breakpoint_control*</code></li>
+<li><code>linux/arch/arm64/kernel/hw_breakpoint.c *hw_breakpoint_control*</code></li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">hw_breakpoint_control</span><span style="color: #51afef;">(</span><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">perf_event</span> *<span style="color: #dcaeea;">bp</span>,
@@ -1029,12 +1029,12 @@ reserve / release 加锁
 
 
 
-<div id="outline-container-org034481e" class="outline-2">
-<h2 id="org034481e"><span class="section-number-2">8</span> arch\_hw\_breakpoint struct</h2>
+<div id="outline-container-org6fba890" class="outline-2">
+<h2 id="org6fba890"><span class="section-number-2">8</span> arch\_hw\_breakpoint struct</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-orgec565d7" class="outline-3">
-<h3 id="orgec565d7"><span class="section-number-3">8.1</span> arch\_hw\_breakpoint</h3>
+<div id="outline-container-orgf21f09c" class="outline-3">
+<h3 id="orgf21f09c"><span class="section-number-3">8.1</span> arch\_hw\_breakpoint</h3>
 <div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 <pre class="src src-c"><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">hw_perf_event</span> <span style="color: #51afef;">{</span>
@@ -1072,12 +1072,12 @@ arch\_hw\_breakpoint-&gt;ctrl 位域实现 DBGWCR
 </div>
 </div>
 
-<div id="outline-container-orge234618" class="outline-2">
-<h2 id="orge234618"><span class="section-number-2">9</span> DBG registers</h2>
+<div id="outline-container-org4fcc2b8" class="outline-2">
+<h2 id="org4fcc2b8"><span class="section-number-2">9</span> DBG registers</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org00e6321" class="outline-3">
-<h3 id="org00e6321"><span class="section-number-3">9.1</span> DBGBCR&lt;n&gt;_EL1</h3>
+<div id="outline-container-org1cad74a" class="outline-3">
+<h3 id="org1cad74a"><span class="section-number-3">9.1</span> DBGBCR&lt;n&gt;_EL1</h3>
 <div class="outline-text-3" id="text-9-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1138,8 +1138,8 @@ DBGBCR&lt;n&gt;_EL1.BT shoulde be 0b000x
 </p>
 </div>
 </div>
-<div id="outline-container-orga3b3704" class="outline-3">
-<h3 id="orga3b3704"><span class="section-number-3">9.2</span> DBGBVR&lt;n&gt;_EL1</h3>
+<div id="outline-container-orgd547527" class="outline-3">
+<h3 id="orgd547527"><span class="section-number-3">9.2</span> DBGBVR&lt;n&gt;_EL1</h3>
 <div class="outline-text-3" id="text-9-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1173,8 +1173,8 @@ DBGBCR&lt;n&gt;_EL1.BT shoulde be 0b000x
 </div>
 </div>
 
-<div id="outline-container-org047763a" class="outline-3">
-<h3 id="org047763a"><span class="section-number-3">9.3</span> DBGWCR&lt;n&gt;_EL1</h3>
+<div id="outline-container-org60c5a0b" class="outline-3">
+<h3 id="org60c5a0b"><span class="section-number-3">9.3</span> DBGWCR&lt;n&gt;_EL1</h3>
 <div class="outline-text-3" id="text-9-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1293,8 +1293,8 @@ save load control</li>
 </div>
 
 
-<div id="outline-container-org013da1a" class="outline-2">
-<h2 id="org013da1a"><span class="section-number-2">10</span> <span class="done DONE">DONE</span> 修改 BCR, BVR 寄存器</h2>
+<div id="outline-container-org41bda32" class="outline-2">
+<h2 id="org41bda32"><span class="section-number-2">10</span> <span class="done DONE">DONE</span> 修改 BCR, BVR 寄存器</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>ref <a href="https://developer.arm.com/docs/ddi0595/h/aarch64-system-registers/dbgbcrn_el1">DBGBCR</a></li>
@@ -1320,14 +1320,14 @@ code
 </p>
 
 <p>
-<a href="#org06a2606">hw\_breakpoin info parse</a>
+<a href="#orge22800b">hw\_breakpoin info parse</a>
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: ST-Saint</p>
-<p class="date">Created: 2020-10-17 Sat 13:00</p>
+<p class="date">Created: 2020-10-17 Sat 13:06</p>
 </div>
 </body>
 </html>
