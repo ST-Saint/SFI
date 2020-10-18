@@ -13,10 +13,11 @@ sudo apt-get install gcc-aarch64-linux-gnu flex bison
 sudo apt-get install -y ccache python3-pip build-essential kernel-package fakeroot libncurses5-dev libssl-dev gcc git gnupg binfmt-support qemu qemu-user-static debootstrap simg2img
 #+END_SRC
 
-* [3/5] BUGS
+* [2/3] BUGS
 
-** TODO linux-v5.9
-*** HOLD 注册 watchpoint 之后马上被触发
+** PROJ linux-v5.9
+*** KILL 注册 watchpoint 之后马上被触发
+CLOSED: [2020-10-18 Sun 03:13]
 
 #+BEGIN_SRC
 
@@ -90,15 +91,18 @@ sudo 权限可注册
   2. 效率
 
 
-*** [ ] enable / disable watchpoint domain in context switching
+*** PROJ enable / disable watchpoint domain in context switching
     Update watchpoints.
 
 [[file:~/Bionic-Builder/Kernel-SRC/linux/arch/arm64/kernel/hw_breakpoint.c::Update watchpoints.]]
 
-*** [ ] inherit watchpoint domain in fork
-    err = arch_dup_task_struct(tsk, orig);
+*** HOLD inherit watchpoint domain in fork
+err = arch_dup_task_struct(tsk, orig);
 
 [[file:~/Bionic-Builder/Kernel-SRC/linux/kernel/fork.c::err = arch_dup_task_struct(tsk, orig);]]
+
+- another option
+  让拥有权限的进程授权给指定线程
 
 * system call
 [[https://www.kernel.org/doc/html/latest/process/adding-syscalls.html][system call linux kernel docs]]
@@ -122,6 +126,16 @@ __SYSCALL(__NR_register_watchpoint, sys_register_watchpoint)
 sudo make -j20 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- hikey970_defconfig
 sudo make -j20 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- all
 #+END_SRC
+
+** de-optimize
+#+BEGIN_SRC c
+__attribute__((optimize("O0"))) function();
+#+END_SRC
+
+#+BEGIN_SRC c
+static noinline void function();
+#+END_SRC
+
 ** kgdb
 *** host side
 #+BEGIN_SRC bash
