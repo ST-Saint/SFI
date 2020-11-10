@@ -6,7 +6,7 @@
 
 ** linux cross platform
 #+BEGIN_SRC bash
-sudo apt-get install gcc-aarch64-linux-gnu flex bison
+sudo apt-get install gcc-aarch64-linux-gnu flex bison bc rsync
 #+END_SRC
 ** Bionic-Builder
 #+BEGIN_SRC bash
@@ -16,8 +16,8 @@ sudo apt-get install -y ccache python3-pip build-essential kernel-package fakero
 * [2/3] BUGS
 
 ** PROJ linux-v5.9
-*** KILL 注册 watchpoint 之后马上被触发
-CLOSED: [2020-10-18 Sun 03:13]
+*** DONE 注册 watchpoint 之后马上被触发
+CLOSED: [2020-11-10 Tue 09:13]
 
 #+BEGIN_SRC
 
@@ -120,7 +120,7 @@ __SYSCALL(__NR_register_watchpoint, sys_register_watchpoint)
 #endif
 #+END_SRC
 
-* commands
+* script
 ** linux cross compile
 #+BEGIN_SRC bash
 sudo make -j20 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- hikey970_defconfig
@@ -162,6 +162,12 @@ sudo echo g > /proc/sysrq-trigger
  sudo nmcli
  #+END_SRC
 
+** demo board
+#+begin_src bash
+sudo resize2fs /dev/sdd12
+git config --add oh-my-zsh.hide-status 1
+git config --add oh-my-zsh.hide-dirty 1    
+#+end_src
 
 * DONE USB Serial Debug
 CLOSED: [2020-10-01 Thu 20:35]
