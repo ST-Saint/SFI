@@ -13,9 +13,58 @@ sudo apt-get install gcc-aarch64-linux-gnu flex bison bc rsync
 sudo apt-get install -y ccache python3-pip build-essential kernel-package fakeroot libncurses5-dev libssl-dev gcc git gnupg binfmt-support qemu qemu-user-static debootstrap simg2img
 #+END_SRC
 
-* [2/3] BUGS
+* [3/5] BUGS
 
-** PROJ linux-v5.9
+** HOLD 注册两个 watchpoint 的 page fault
+
+#+begin_src bash
+[   61.044980] Unable to handle kernel paging request at virtual address 0000aaaaf56fa278
+[   61.058500] Mem abort info:
+[   61.064741]   ESR = 0x92000047
+[   61.068568]   EC = 0x24: DABT (lower EL), IL = 32 bits
+[   61.073703]   SET = 0, FnV = 0
+[   61.076753]   EA = 0, S1PTW = 0
+[   61.079885] Data abort info:
+[   61.082761]   ISV = 0, ISS = 0x00000047
+[   61.086595]   CM = 0, WnR = 1
+[   61.089564] user pgtable: 4k pages, 48-bit VAs, pgdp=00000001b151e000
+[   61.096004] [0000aaaaf56fa278] pgd=00000001b569f003, p4d=00000001b569f003, pud=00000001b5c84003, pmd=00000001b5645003, pte=0000000000000000
+[   61.108529] Internal error: Oops: 92000047 [#1] PREEMPT SMP
+[   61.114094] Modules linked in: wl18xx wlcore mac80211 libarc4 cfg80211 rfkill wlcore_sdio crct10dif_ce ip_tables x_tables ipv6
+[   61.125493] CPU: 7 PID: 429 Comm: awid_user Not tainted 5.9.0-rc7-00450-gd75381b1fdb8 #13
+[   61.133663] Hardware name: HiKey970 (DT)
+[   61.137578] pstate: 60000000 (nZCv daif -PAN -UAO BTYPE=--)
+[   61.143142] pc : 0000ffffa2da404c
+[   61.146447] lr : 0000000000001030
+[   61.149756] sp : 0000ffffd70e0a00
+[   61.153061] x29: 0000ffffd70e0a00 x28: 0000000000000101 
+[   61.158366] x27: 0000000000000050 x26: 0000ffffa2e81000 
+[   61.163670] x25: 00000000000000ff x24: 0000ffffa2e835d8 
+[   61.168975] x23: 0000ffffa2e81ad0 x22: 0000000000001000 
+[   61.174279] x21: 0000aaaaf56f9260 x20: 0000ffffa2e81a70 
+[   61.179583] x19: 0000000000001010 x18: 0000ffffa2e81a70 
+[   61.184888] x17: 0000aaaaf56f8808 x16: 0000000000000007 
+[   61.190192] x15: 0000000000000000 x14: 0000000000000002 
+[   61.195496] x13: 000000000000270f x12: 0000000000000001 
+[   61.200801] x11: 0000000000000000 x10: 0000000000000040 
+[   61.206105] x9 : 0000ffffa2eaa2a0 x8 : 0000aaaaf56f8010 
+[   61.211409] x7 : 0000000000000000 x6 : 0000000000000000 
+[   61.216714] x5 : 0000000000000077 x4 : 0000000000001011 
+[   61.222018] x3 : 0000aaaaf56fa270 x2 : 0000000000001011 
+[   61.227322] x1 : 0000000000000000 x0 : 000000000001ed91 
+[   61.232630] ---[ end trace b453d37e710f74fa ]---
+[   61.237249] note: awid_user[429] exited with preempt_count 1
+#+end_src
+
+** TODO 注册绑定 current 的 wachpoint
+preempt_count = 2
+#+begin_src bash
+BUG: scheduling while atomic: awid_user/427/0x00000002
+#+end_src
+每注册的 current binded task 多一个 preempt_count
+
+** DONE linux-v5.9
+CLOSED: [2020-11-11 Wed 14:02]
 *** DONE 注册 watchpoint 之后马上被触发
 CLOSED: [2020-11-10 Tue 09:13]
 
@@ -63,14 +112,14 @@ trigger_backtrace
 [[file:figures/trigger_backtrace.png]]
 
 ** [X] watchpoint
-CLOSED: [2020-10-15 Thu 18:16]
+CLOSED: [2020-11-11 Wed 14:02]
 
 触发之后无法跳出 trigger function
 
 [[https://stackoverflow.com/questions/28280813/register-wide-hw-breakpoint-continually-triggers-handler-callback][feature]]
 
-** KILL netlink
-CLOSED: [2020-10-15 Thu 18:16]
+** DONE netlink
+CLOSED: [2020-11-11 Wed 14:02]
 *** DONE 普通用户权限传递给 netlink kernel
 CLOSED: [2020-10-15 Thu 18:16]
 普通用户无法注册 watchpoint
@@ -200,8 +249,7 @@ sudo insmod xr_sub_serial_common.ko
 - minicom 115200 8N1
 - *hardware / software flow control: No*
 
-
-* DONE register hw\_breakpoint linux work flow
+* DONE register hw_breakpoint linux work flow
 CLOSED: [2020-10-01 Thu 20:35]
 
 ** ~linux/kernel/events/hw_breakpoint.c *register_wide_hw_breakpoint*~
@@ -507,10 +555,9 @@ static int hw_breakpoint_control(struct perf_event *bp,
 #+END_SRC
 
 
+* arch_hw_breakpoint struct
 
-* arch\_hw\_breakpoint struct
-
-** arch\_hw\_breakpoint
+** arch_hw_breakpoint
 
 #+BEGIN_SRC c
 struct hw_perf_event {
@@ -540,7 +587,7 @@ struct arch_hw_breakpoint_ctrl {
 };
 #+END_SRC
 
-arch\_hw\_breakpoint->ctrl 位域实现 DBGWCR
+arch_hw_breakpoint->ctrl 位域实现 DBGWCR
 
 * DBG registers
 
@@ -589,7 +636,6 @@ DBGBCR<n>_EL1.BT shoulde be 0b000x
   0 disabled
   1 enabled
 
-
 * DONE 修改 BCR, BVR 寄存器
 CLOSED: [2020-10-02 Fri 17:14]
 :PROPERTIES:
@@ -611,5 +657,5 @@ CLOSED: [2020-10-02 Fri 17:14]
   #+END_SRC
 [[file:~/Bionic-Builder/Kernel-SRC/linux/arch/arm64/kernel/hw_breakpoint.c::case HW_BREAKPOINT_RESTORE:
 
-[[*hw\_breakpoin info parse][hw\_breakpoin info parse]]
+[[*hw_breakpoin info parse][hw_breakpoin info parse]]
 
